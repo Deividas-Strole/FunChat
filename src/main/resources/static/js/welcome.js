@@ -1,20 +1,34 @@
 let name = prompt("Hello! :) What is you name?")
 console.log("name: " + name)
 
-fetch("http://localhost:8080/channels", {
-    method: "POST",
-    headers: {
-                "Content-Type": "application/json"
-    },
+const link = document.getElementById('myLink');
+const form = document.getElementById('myForm');
+const data1Input = document.getElementById('data1');
 
-//    body: JSON.stringify({
-//        name: name
-//    })
+link.addEventListener("click", (event) => {
 
-    body: JSON.stringify(name)
+    event.preventDefault(); // Prevent default link behavior
 
- }).then(res => {
-        return res.json()
-    })
-    .then(data => console.log(data))
-    .catch(error => console.log("ErroR"))
+    fetch("http://localhost:8080/channels", {
+
+        method: "POST",
+        headers: {
+                    "Content-Type": "application/json"
+        },
+
+    //    body: JSON.stringify({
+    //        name: name
+    //    })
+
+        body: JSON.stringify(name)
+
+     }).then(res => {
+            return res.json()
+        })
+        .then(data => console.log(data))
+        .catch(error => console.log("ErroR"))
+
+        data1Input.value = name
+
+        form.submit()
+}
