@@ -9,6 +9,7 @@ fetch("http://localhost:8080/channels", {
 //    body: JSON.stringify({
 //        name: name
 //    })
+
     body: JSON.stringify(name)
 
  }).then(res => {
