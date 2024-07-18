@@ -3,7 +3,7 @@ console.log("name: " + name)
 
 const link = document.getElementById('myLink');
 const form = document.getElementById('myForm');
-const data1Input = document.getElementById('data1');
+//const data1Input = document.getElementById('data1');
 
 link.addEventListener("click", (event) => {
 
@@ -28,7 +28,7 @@ link.addEventListener("click", (event) => {
         .then(data => console.log(data))
         .catch(error => console.log("ErroR"))
 
-        data1Input.value = name
+        //data1Input.value = name
 
         form.submit()
-}
+})
