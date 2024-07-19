@@ -7,17 +7,36 @@
     <body>
         <h2> Welcome to Chat Channel </h2>
 
-        <form action="/action_page.php">
-            <input type="text" id="chatBox" name="fname"><br><br>
-            <input type="text" id="yourMessage" name="lname"><br><br>
-        </form>
+        <input type="text" id="messages"> <br>
+        <input type="text" id="myInput">
+        <button onclick="getText()">Get Text</button>
 
 
 
-        <div>
-            <input type="text" th:field=${user.name}/>
-        </div>
+
+
+
+<!--        <form action="/action_page.php">-->
+<!--            <input type="text" id="chatBox" name="fname"><br><br>-->
+<!--            <label th:text="${user.name}"></label>-->
+<!--             <input type="text" id="yourMessage" name="lname"><br><br>-->
+<!--        </form>-->
+
+
+
+<!--        <div>-->
+<!--            <input type="text" th:field=${user.name}/>-->
+<!--        </div>-->
+
+<!--        <script>-->
+<!--            function getText() {-->
+<!--              const inputElement = document.getElementById("myInput");-->
+<!--              const inputText = inputElement.value;-->
+<!--              console.log(inputText); // Prints the entered text to the console-->
+<!--            }-->
+<!--        </script>-->
 
         <script type="text/javascript" src="/js/channels.js"></script>
+
     </body>
 </html>
