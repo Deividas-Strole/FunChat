@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <title>Channels</title>
     </head>
     <body>
-    <h2> Welcome to Chat Channel </h2>
+        <h2> Welcome to Chat Channel </h2>
+
+        <form action="/action_page.php">
+            <input type="text" id="chatBox" name="fname"><br><br>
+            <input type="text" id="yourMessage" name="lname"><br><br>
+        </form>
+
+
+
+        <div>
+            <input type="text" th:field=${user.name}/>
+        </div>
+
+        <script type="text/javascript" src="/js/channels.js"></script>
     </body>
 </html>

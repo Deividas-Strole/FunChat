@@ -1,9 +1,11 @@
 let name = prompt("Hello! :) What is you name?")
-console.log("name: " + name)
+console.log("Name entered: " + name)
+var user = {
+    "name": name
+}
 
 const link = document.getElementById('myLink');
-const form = document.getElementById('myForm');
-//const data1Input = document.getElementById('data1');
+//const form = document.getElementById('myForm');
 
 link.addEventListener("click", (event) => {
 
@@ -16,19 +18,18 @@ link.addEventListener("click", (event) => {
                     "Content-Type": "application/json"
         },
 
-    //    body: JSON.stringify({
-    //        name: name
-    //    })
 
-        body: JSON.stringify(name)
+//        body: JSON.stringify({
+//                   name: name
+//                })
+
+        body: JSON.stringify(user)
 
      }).then(res => {
             return res.json()
         })
         .then(data => console.log(data))
-        .catch(error => console.log("ErroR"))
+        .catch(error => window.location.href = "http://localhost:8080/channels") //console.log("ErroR"))
 
-        //data1Input.value = name
-
-        form.submit()
+        //form.submit()
 })
