@@ -1,5 +1,6 @@
 package com.coderscampus.ChatApplication.web;
 
+import com.coderscampus.ChatApplication.domain.Message;
 import com.coderscampus.ChatApplication.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +28,11 @@ public class ChatApplicationController {
         return "redirect:/channels";
     }
 
+    @PostMapping("/channels2")
+    private String cannels2(@RequestBody Message message, ModelMap model) {
+        System.out.println("Textas: " + message);
+        return "channels";
+    }
 //    @PostMapping("/channels")
 //    private String channels(@RequestBody String name, ModelMap model) {
 //        System.out.println("Name Bubu: " + name);
