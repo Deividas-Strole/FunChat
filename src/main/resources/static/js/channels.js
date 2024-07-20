@@ -15,8 +15,6 @@ function getText() {
   sendDataToServer(massage);
 }
 
-
-
 function sendDataToServer(message) {
   fetch('http://localhost:8080/channels2', {
     method: 'POST',
