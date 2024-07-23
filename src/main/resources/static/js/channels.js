@@ -24,10 +24,7 @@ function sendDataToServer(message) {
     body: JSON.stringify(message)
   })
   .then(response => response.json())
-  .then(data => {
-    console.log('Server response:', massage);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+  .then(data => console.log(data))
+  //.then(data => {console.log('Server response:', massage);})
+  .catch(error => {console.error('Error:', error);});
 }

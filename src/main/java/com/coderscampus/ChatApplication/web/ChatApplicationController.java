@@ -30,7 +30,7 @@ public class ChatApplicationController {
 
     @PostMapping("/channels2")
     private String cannels2(@RequestBody Message message, ModelMap model) {
-        System.out.println("Textas: " + message);
+        System.out.println("Textas: " + message.getMessageText());
         return "channels";
     }
 //    @PostMapping("/channels")
