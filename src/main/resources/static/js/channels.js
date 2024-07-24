@@ -3,14 +3,20 @@ var textElement;
 var massage;
 
 function getText() {
-  inputElement = document.getElementById("myInput"); // input
+  inputElement = document.getElementById("myInput"); // input text
+  userNameInputElement = document.getElementById("userName"); // userName
   textElement = document.getElementById("messages"); // output
+
   const inputText = inputElement.value;
+  const userName = userNameInputElement.value;
   textElement.value = inputText;
+
   console.log("textElement entered: " + inputText);
+  console.log("userName entered and valued: " + userName);
+
   message = {
-      "messageUser": "Deividas", //inputElement,
-      "messageText": inputText//textElement
+      "messageUser": userName, //userName,
+      "messageText": inputText //textElement
   }
 
   console.log(inputText + "**********************"); // Prints the entered text to the console
