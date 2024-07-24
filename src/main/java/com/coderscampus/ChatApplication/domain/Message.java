@@ -2,8 +2,8 @@ package com.coderscampus.ChatApplication.domain;
 
 public class Message {
 
+    String messageUser;
     String messageText;
-    User messageUser;
 
     public String getMessageText() {
         return messageText;
@@ -13,11 +13,11 @@ public class Message {
         this.messageText = messageText;
     }
 
-    public User getMessageUser() {
+    public String getMessageUser() {
         return messageUser;
     }
 
-    public void setMessageUser(User messageUser) {
+    public void setMessageUser(String messageUser) {
         this.messageUser = messageUser;
     }
 

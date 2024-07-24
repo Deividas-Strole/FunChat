@@ -30,8 +30,10 @@ public class ChatApplicationController {
 
     @PostMapping("/channels2")
     private String cannels2(@RequestBody Message message, ModelMap model) {
-        System.out.println("Textas: " + message.getMessageText());
-        return "channels";
+        System.out.println("****** we are in channels2!!!!");
+        System.out.println("Channels2 Textas: " + message.getMessageText());
+        System.out.println("Channels2 Name:" + message.getMessageUser());
+        return "redirect:/channels";
     }
 //    @PostMapping("/channels")
 //    private String channels(@RequestBody String name, ModelMap model) {

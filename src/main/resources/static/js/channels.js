@@ -5,14 +5,17 @@ var massage;
 function getText() {
   inputElement = document.getElementById("myInput"); // input
   textElement = document.getElementById("messages"); // output
-  massage = {
-      "messageUser": inputElement,
-      "messageText": textElement
-  }
   const inputText = inputElement.value;
   textElement.value = inputText;
-  console.log(inputText); // Prints the entered text to the console
-  sendDataToServer(massage);
+  console.log("textElement entered: " + inputText);
+  message = {
+      "messageUser": "Deividas", //inputElement,
+      "messageText": inputText//textElement
+  }
+
+  console.log(inputText + "**********************"); // Prints the entered text to the console
+  //console.log(
+  sendDataToServer(message);
 }
 
 function sendDataToServer(message) {
