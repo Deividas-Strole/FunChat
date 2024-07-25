@@ -24,7 +24,6 @@ public class ChatApplicationController {
     private String channels(@RequestBody User user, ModelMap model) {
         System.out.println("Name Bubu: " + user.getName());
         yourName = user.getName();
-        //model.put("name", "vardas");
         return "redirect:/channels";
     }
 
@@ -50,11 +49,12 @@ public class ChatApplicationController {
 
     @GetMapping("/channels")
     private String getChannels(ModelMap model) {
-        System.out.println("yourName == " + yourName);
+        //System.out.println("yourName == " + yourName);
 
         User user2 = new User();
         user2.setName(yourName);
-        model.put("user", user2);
+        //model.put("user", user2);
+        model.put("name", yourName);
         return "channels";
     }
 }

@@ -8,7 +8,7 @@
         <h2> Welcome to Chat Channel </h2>
 
         <input type="text" id="messages"> <br>
-        <input id="userName" th:text="${user.name}">
+<!--        <input id="userName" th:text="${user.name}">-->
         <input type="text" id="myInput">
 
         <button onclick="getText()">Get Text</button>
@@ -32,6 +32,9 @@
 <!--            }-->
 <!--        </script>-->
 
+        <script>
+            var yourName = "[[${name}]]";
+        </script>
         <script type="text/javascript" src="/js/channels.js"></script>
 
     </body>
