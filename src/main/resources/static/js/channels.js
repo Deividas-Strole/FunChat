@@ -1,25 +1,26 @@
 var inputElement;
 var textElement;
 var massage;
+//var yourName = "[[${name}]]";
 
 function getText() {
   inputElement = document.getElementById("myInput"); // input text
-  userNameInputElement = document.getElementById("userName"); // userName
+//  userNameInputElement = document.getElementById("userName"); // userName
   textElement = document.getElementById("messages"); // output
 
   const inputText = inputElement.value;
-  const userName = userNameInputElement.value;
+//  const userName = userNameInputElement.value;
   textElement.value = inputText;
 
   console.log("textElement entered: " + inputText);
-  console.log("userName entered and valued: " + userName);
+//  console.log("userName entered and valued: " + userName);
 
   message = {
-      "messageUser": userName, //userName,
+      "messageUser": yourName, //"Test-User-Name", //userName, //userName,
       "messageText": inputText //textElement
   }
 
-  console.log(inputText + "**********************"); // Prints the entered text to the console
+  console.log("******yourname****************" + yourName); // Prints the entered text to the console
   //console.log(
   sendDataToServer(message);
 }
