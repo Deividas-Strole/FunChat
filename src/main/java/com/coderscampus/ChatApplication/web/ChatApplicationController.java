@@ -29,8 +29,8 @@ public class ChatApplicationController {
 //
 //    @GetMapping("/channels")
 //    private String getChannels(ModelMap model) {
-//        System.out.println("yourName in GetMapping (2nf func) == " + yourName);
-//        model.put("name", yourName);
+//        System.out.println("yourName in GetMapping (2nf func) == " + "yourName");
+//        model.put("name", "yourName");
 //        return "channels";
 //    }
 
@@ -38,7 +38,7 @@ public class ChatApplicationController {
     private String channels(@RequestBody User user, ModelMap model) {
         String yourName = user.getName();
         System.out.println("yourName in Controller (PostMaping - channels) " + yourName);
-        model.put("user", user);
+        model.put("name", yourName);
 
         return "channels";
     }
