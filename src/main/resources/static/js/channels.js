@@ -13,7 +13,7 @@ function getText() {
   textElement.value = inputText;
 
   console.log("textElement entered: " + inputText);
-//  console.log("userName entered and valued: " + userName);
+  console.log("your name in channels.js: " + yourName);
 
   message = {
       "messageUser": yourName, //"Test-User-Name", //userName, //userName,

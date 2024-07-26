@@ -13,19 +13,37 @@ public class ChatApplicationController {
 
 
 
-    String yourName;
+    //String yourName;
 
     @GetMapping("/welcome")
     private String welcome() {
         return "welcome";
     }
 
+//    @PostMapping("/channels")
+//    private String channels(@RequestBody User user, ModelMap model) {
+//        yourName = user.getName();
+//        System.out.println("yourName in PostMapping (1st func) == " + yourName);
+//        return "redirect:/channels";
+//    }
+//
+//    @GetMapping("/channels")
+//    private String getChannels(ModelMap model) {
+//        System.out.println("yourName in GetMapping (2nf func) == " + yourName);
+//        model.put("name", yourName);
+//        return "channels";
+//    }
+
     @PostMapping("/channels")
     private String channels(@RequestBody User user, ModelMap model) {
-        System.out.println("Name Bubu: " + user.getName());
-        yourName = user.getName();
-        return "redirect:/channels";
+        String yourName = user.getName();
+        System.out.println("yourName in Controller (PostMaping - channels) " + yourName);
+        model.put("user", user);
+
+        return "channels";
     }
+
+
 
     @PostMapping("/channels2")
     private String cannels2(@RequestBody Message message, ModelMap model) {
@@ -34,27 +52,10 @@ public class ChatApplicationController {
         System.out.println("Channels2 Name:" + message.getMessageUser());
         return "redirect:/channels";
     }
-//    @PostMapping("/channels")
-//    private String channels(@RequestBody String name, ModelMap model) {
-//        System.out.println("Name Bubu: " + name);
-//        //yourName = name;
-//
-//        User user = new User();
-//        user.setName(name);
-//        model.put("user", user);
-//
-//        return "channels";
-//    }
 
-
-    @GetMapping("/channels")
-    private String getChannels(ModelMap model) {
-        //System.out.println("yourName == " + yourName);
-
-        User user2 = new User();
-        user2.setName(yourName);
-        //model.put("user", user2);
-        model.put("name", yourName);
-        return "channels";
+    @GetMapping("/test")
+    private String test() {
+        return "test";
     }
+
 }
