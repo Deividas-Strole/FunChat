@@ -3,7 +3,7 @@ var textElement;
 var massage;
 //var yourName = "[[${name}]]";
 
-const sendDataToServer = async (message) => {
+var sendDataToServer = async (message) => {
 
   //const data = {message: message};
 
@@ -37,6 +37,7 @@ function getText() {
 //  userNameInputElement = document.getElementById("userName"); // userName
   textElement = document.getElementById("messages"); // output
   inputElement = document.getElementById("myInput"); // input text
+
 
 
   const inputText = inputElement.value;
