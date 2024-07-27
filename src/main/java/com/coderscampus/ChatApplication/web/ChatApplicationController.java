@@ -40,7 +40,7 @@ public class ChatApplicationController {
         System.out.println("yourName in Controller (PostMaping - channels) " + yourName);
         model.put("name", yourName);
 
-        return "channels";
+        return "/channels";
     }
 
 
@@ -50,7 +50,7 @@ public class ChatApplicationController {
         System.out.println("****** we are in channels2!!!!");
         System.out.println("Channels2 Textas: " + message.getMessageText());
         System.out.println("Channels2 Name:" + message.getMessageUser());
-        return "redirect:/channels";
+        return "redirect:/test";
     }
 
     @GetMapping("/test")
