@@ -48,7 +48,6 @@ public class ChatApplicationController {
     }
 
 
-
     @PostMapping("/channels2")
     private String cannels2(@RequestBody Message message, ModelMap model) {
         System.out.println("****** we are in channels2!!!!");
