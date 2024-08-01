@@ -43,7 +43,7 @@ function getText() {
   const inputText = inputElement.value;
   console.log("2 input text before assignation: " + inputText);
 //  const userName = userNameInputElement.value;
-  textElement.value = inputText;
+  textElement.value = listOfMessages; //yourName + ": " + inputText;
 
   console.log("textElement entered: " + inputText);
   console.log("your name in channels.js: " + yourName);

@@ -54,7 +54,7 @@ public class ChatApplicationController {
         System.out.println("Channels2 Name:" + message.getMessageUser());
         //System.out.println("message list in controller before sending back to frontend: " + messageService.saveMessage(message));
 
-************************* start here *** correct passing data from back end to front end ******* D O M
+//************************* start here *** correct passing data from back end to front end ******* D O M
         model.put("listOfMessages", messageService.saveMessage(message));
         return "channels";
     }
