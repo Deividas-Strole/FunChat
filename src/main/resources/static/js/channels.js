@@ -38,8 +38,6 @@ function getText() {
   textElement = document.getElementById("messages"); // output
   inputElement = document.getElementById("myInput"); // input text
 
-
-
   const inputText = inputElement.value;
   console.log("2 input text before assignation: " + inputText);
 //  const userName = userNameInputElement.value;
