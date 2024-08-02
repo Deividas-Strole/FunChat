@@ -3,7 +3,7 @@ var textElement;
 var massage;
 //var yourName = "[[${name}]]";
 
-const sendDataToServer = async (message) => {
+var sendDataToServer = async (message) => {
 
   //const data = {message: message};
 
@@ -38,11 +38,10 @@ function getText() {
   textElement = document.getElementById("messages"); // output
   inputElement = document.getElementById("myInput"); // input text
 
-
   const inputText = inputElement.value;
   console.log("2 input text before assignation: " + inputText);
 //  const userName = userNameInputElement.value;
-  textElement.value = inputText;
+  textElement.value = listOfMessages; //yourName + ": " + inputText;
 
   console.log("textElement entered: " + inputText);
   console.log("your name in channels.js: " + yourName);
