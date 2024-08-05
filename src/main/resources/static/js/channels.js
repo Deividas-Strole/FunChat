@@ -57,7 +57,6 @@ function getText() {
 }
 
 
-
 // *************** my func
 //function sendDataToServer(message) {
 //  fetch('http://localhost:8080/channels2', {
