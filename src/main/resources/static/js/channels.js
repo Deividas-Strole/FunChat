@@ -3,44 +3,92 @@ var textElement;
 var massage;
 //var yourName = "[[${name}]]";
 
-var sendDataToServer = async (message) => {
+//function fetchDataFromServer(message) {
+//  fetch('http://localhost:8080/channels2')
+//    .then(response => response.json())
+//    .then(data => {
+//      console.log('Data from server:', message);
+//      updateDOM(message);
+//    })
+//    .catch(error => {
+//      console.error('Error fetching data:', error);
+//    });
+//}
+//
+//// Function to update the DOM with the received data
+//function updateDOM(message) {
+//  const dataContainer = document.getElementById('data-container');
+//  dataContainer.innerHTML = '';
+//  data.forEach(item => {
+//    const div = document.createElement('div');
+//    div.textContent = item;
+//    dataContainer.appendChild(div);
+//  });
+//}
 
-  //const data = {message: message};
+//var sendDataToServer = async (message) => {
+//  //const data = {message: message};
+//  try {
+//
+//    const response = await fetch('http://localhost:8080/channels2', {
+//      method: 'POST',
+//      headers: { 'Content-Type': 'application/json' },
+//      body: JSON.stringify(message)
+//    })
+//     .then(response => {
+//         if (!response.ok) {
+//            throw new Error('Network response was not ok');
+//     }
+//     return response.json();
+//  })
+//  .then(data => {
+//    console.log("Success", message);
+//  })
+////    // The response is now HTML, so we'll load it into the document
+////
+////    const htmlContent = await response.text();
+////    document.open();
+////    document.write(htmlContent);
+////    document.close();
+////  }
+//    catch (error => {
+//    console.error('Error:', error);
+//  })
+//}
+//};
 
+async function postData(data) {
   try {
-
     const response = await fetch('http://localhost:8080/channels2', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(message)
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+
     });
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
 
-    // The response is now HTML, so we'll load it into the document
-    const htmlContent = await response.text();
-    document.open();
-    document.write(htmlContent);
-    document.close();
-  }
-
-    catch (error) {
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
     console.error('Error:', error);
   }
+}
 
-};
+
 
 function getText() {
 
-//  userNameInputElement = document.getElementById("userName"); // userName
   textElement = document.getElementById("messages"); // output
   inputElement = document.getElementById("myInput"); // input text
 
   const inputText = inputElement.value;
   console.log("2 input text before assignation: " + inputText);
-//  const userName = userNameInputElement.value;
+
   textElement.value = listOfMessages; //yourName + ": " + inputText;
 
   console.log("textElement entered: " + inputText);
@@ -51,9 +99,10 @@ function getText() {
       "messageText": inputText //textElement
   }
 
-  console.log("******yourname****************" + yourName); // Prints the entered text to the console
-  //console.log(
-  sendDataToServer(message);
+
+  //sendDataToServer(message);
+  //fetchDataFromServer(message)
+  postData(message);
 }
 
 
