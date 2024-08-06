@@ -74,6 +74,10 @@ async function postData(data) {
 
     const result = await response.json();
     console.log(result);
+
+    textElement.value = result;
+
+
   } catch (error) {
     console.error('Error:', error);
   }
