@@ -99,7 +99,6 @@ function getText() {
       "messageText": inputText //textElement
   }
 
-
   //sendDataToServer(message);
   //fetchDataFromServer(message)
   postData(message);
