@@ -80,7 +80,6 @@ async function postData(data) {
 }
 
 
-
 function getText() {
 
   textElement = document.getElementById("messages"); // output
