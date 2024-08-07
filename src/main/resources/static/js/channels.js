@@ -73,7 +73,20 @@ async function postData(data) {
     }
 
     const result = await response.json();
-    console.log(result);
+
+    var conversation = JSON.stringify(result);
+    console.log("printing object: " + conversation);
+
+//    for (var i = 0; i < result.length; i++) {
+//        console.log(result.messageUser[i]);
+//    }
+
+    //const jsonObject = JSON.parse(result);
+
+
+    textElement.value = conversation;
+
+
   } catch (error) {
     console.error('Error:', error);
   }
