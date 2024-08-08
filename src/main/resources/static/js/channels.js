@@ -73,9 +73,22 @@ async function postData(data) {
     }
 
     const result = await response.json();
+    console.log("************ object: " + typeof result);
 
-    var conversation = JSON.stringify(result);
-    console.log("printing object: " + conversation);
+    populateChatBox (result);
+
+
+
+    //var conversation = JSON.stringify(result);
+    //const parsedArray = JSON.parse(result);
+
+//    const convertedArray = {};
+//
+//    parsedArray.forEach((item, index) => {
+//        convertedArray["item${index + 1}"] = item;
+//    });
+//
+//    console.log("*********convertedArray: " + convertedArray);
 
 //    for (var i = 0; i < result.length; i++) {
 //        console.log(result.messageUser[i]);
@@ -84,13 +97,44 @@ async function postData(data) {
     //const jsonObject = JSON.parse(result);
 
 
-    textElement.value = conversation;
+    //textElement.value = conversation;
 
 
   } catch (error) {
     console.error('Error:', error);
   }
 }
+
+function populateChatBox (result) {
+    const container = document.getElementById('data-container');
+    container.innerHTML = ''; // Clear any existing content
+
+                // Create HTML elements to display the data
+    result.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'data-item';
+        itemDiv.innerHTML = `<strong>${item.messageUser}:</strong>  ${item.messageText}<br>`;
+        container.appendChild(itemDiv);
+    });
+
+}
+
+function displayData(data) {
+    const container = document.getElementById('data-container');
+    container.innerHTML = ''; // Clear any existing content
+
+    // Create HTML elements to display the data
+    data.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'data-item';
+        itemDiv.innerHTML = `
+            <p><strong>Name:</strong> ${item.name}</p>
+            <p><strong>Value:</strong> ${item.value}</p>
+        `;
+        container.appendChild(itemDiv);
+    });
+}
+
 
 function getText() {
 
