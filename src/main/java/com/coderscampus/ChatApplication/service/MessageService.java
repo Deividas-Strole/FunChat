@@ -19,4 +19,7 @@ public class MessageService {
         return listOfMessages;
     }
 
+    public List<Message> getAllMessage() {
+        return listOfMessages;
+    }
 }

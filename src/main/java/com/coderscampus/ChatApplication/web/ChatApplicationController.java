@@ -42,6 +42,14 @@ public class ChatApplicationController {
 //        return "channels";
 //    }
 
+    @GetMapping("/channels")
+    @ResponseBody
+    private ResponseEntity returnAllMessages(ModelMap model) {
+        List<Message>  listOfMessages = messageService.getAllMessage();
+        model.put("listOfMessages", listOfMessages);
+        return ResponseEntity.ok().body(listOfMessages);
+    }
+
     @PostMapping("/channels")
     private String channels(@RequestBody User user, ModelMap model) {
         String yourName = user.getName();
