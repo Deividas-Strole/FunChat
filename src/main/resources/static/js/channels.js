@@ -83,13 +83,13 @@ function test() {
 
 
 function getText() {
-  textElement = document.getElementById("messages"); // output
+  //textElement = document.getElementById("messages"); // output
   inputElement = document.getElementById("myInput"); // input text
 
   const inputText = inputElement.value;
   console.log("2 input text before assignation: " + inputText);
 
-  textElement.value = listOfMessages; //yourName + ": " + inputText;
+ // textElement.value = listOfMessages; //yourName + ": " + inputText;
 
   console.log("textElement entered: " + inputText);
   console.log("your name in channels.js: " + yourName);
