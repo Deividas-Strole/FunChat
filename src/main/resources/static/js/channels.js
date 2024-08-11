@@ -2,6 +2,7 @@ var inputElement;
 var textElement;
 var massage;
 
+//console.log("----=== we are in main body!");
 
 async function postData(data) {
   try {
@@ -28,16 +29,18 @@ async function postData(data) {
 }
 
 function getAllMessages() {
+
+            console.log("-------------> we are in getAllMessages!");
             fetch('http://localhost:8080/channels')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
-                    return response.text(); // Expecting a simple string response
+                    return response.json(); // Expecting a simple string response
                 })
                 .then(data => {
                     populateChatBox (data);
-                    //console.log("resultatas: " + data);
+                    //console.log("We are in getAllMessages, cia data: " + data);
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
@@ -100,6 +103,10 @@ function getText() {
   //fetchDataFromServer(message)
   //setInterval(getAllMessages, 1000);
   postData(message);
+
 }
 
+//getAllMessages();
+
+setInterval(getAllMessages, 1000);
 //setInterval(getAllMessages, 1000);
