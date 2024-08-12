@@ -29,7 +29,6 @@ public class ChatApplicationController {
     @ResponseBody
     private ResponseEntity returnAllMessages(ModelMap model) {
         List<Message>  listOfMessages = messageService.getAllMessage();
-        model.put("listOfMessages", listOfMessages);
         return ResponseEntity.ok().body(listOfMessages);
     }
 
@@ -44,7 +43,6 @@ public class ChatApplicationController {
     @ResponseBody
     private ResponseEntity cannels2(@RequestBody Message message, ModelMap model) {
         List<Message>  listOfMessages = messageService.saveMessage(message);
-        model.put("listOfMessages", listOfMessages);
         return ResponseEntity.ok().body(listOfMessages);
     }
 }
