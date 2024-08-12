@@ -1,5 +1,4 @@
 const name = prompt("Hello! :) What is your name?");
-console.log("Name entered: " + name);
 
 const link = document.getElementById('myLink');
 
