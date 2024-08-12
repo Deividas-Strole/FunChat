@@ -1,9 +1,6 @@
 var inputElement;
 var textElement;
 var massage;
-//var yourName = "[[${name}]]";
-
-//console.log("----=== we are in main body!");
 
 async function postData(data) {
   try {
@@ -20,8 +17,6 @@ async function postData(data) {
     }
 
     const result = await response.json();
-    console.log("************ object: " + typeof result);
-
     populateChatBox (result);
 
   } catch (error) {
@@ -30,25 +25,20 @@ async function postData(data) {
 }
 
 function getAllMessages() {
-
-            console.log("-------------> we are in getAllMessages!");
-            fetch('http://localhost:8080/channels')
+             fetch('http://localhost:8080/channels')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
-                    return response.json(); // Expecting a simple string response
+                    return response.json();
                 })
                 .then(data => {
                     populateChatBox (data);
-                    //console.log("We are in getAllMessages, cia data: " + data);
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
                 });
-
         }
-
 
 function populateChatBox (result) {
     const container = document.getElementById('data-container');
@@ -62,73 +52,21 @@ function populateChatBox (result) {
     });
 }
 
-
-//function displayData(data) {
-//    const container = document.getElementById('data-container');
-//    container.innerHTML = ''; // Clear any existing content
-//    // Create HTML elements to display the data
-//    data.forEach(item => {
-//        const itemDiv = document.createElement('div');
-//        itemDiv.className = 'data-item';
-//        itemDiv.innerHTML = `
-//            <p><strong>Name:</strong> ${item.name}</p>
-//            <p><strong>Value:</strong> ${item.value}</p>
-//        `;
-//        container.appendChild(itemDiv);
-//    });
-//}
-//
-//function test() {
-//    console.log("qwert");
-//}
-
-
-//function getText() {
-//  //textElement = document.getElementById("messages"); // output
-//  inputElement = document.getElementById("myInput"); // input text
-//
-//  const inputText = inputElement.value;
-//  console.log("2 input text before assignation: " + inputText);
-//
-// // textElement.value = listOfMessages; //yourName + ": " + inputText;
-//
-//  console.log("textElement entered: " + inputText);
-//  console.log("your name in channels.js: " + yourName);
-//
-//  message = {
-//      "messageUser": yourName, //"Test-User-Name", //userName, //userName,
-//      "messageText": inputText //textElement
-//  }
-//
-//  //sendDataToServer(message);
-//  //fetchDataFromServer(message)
-//  //setInterval(getAllMessages, 1000);
-//  postData(message);
-//
-//}
-
 const input = document.getElementById('myInput');
 
 input.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
-    // Get the text entered by the user
-    const enteredText = input.value;
+        const enteredText = input.value;
 
     message = {
-          "messageUser": yourName, //"Test-User-Name", //userName, //userName,
-          "messageText": enteredText //textElement
+          "messageUser": yourName,
+          "messageText": enteredText
       }
 
-    // Perform your desired action here
-    console.log('You entered:', enteredText);
     postData(message);
 
-    // Clear the input field (optional)
     input.value = '';
   }
 });
 
-//getAllMessages();
-
 setInterval(getAllMessages, 1000);
-//setInterval(getAllMessages, 1000);
