@@ -62,49 +62,70 @@ function populateChatBox (result) {
 }
 
 
-function displayData(data) {
-    const container = document.getElementById('data-container');
-    container.innerHTML = ''; // Clear any existing content
-    // Create HTML elements to display the data
-    data.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'data-item';
-        itemDiv.innerHTML = `
-            <p><strong>Name:</strong> ${item.name}</p>
-            <p><strong>Value:</strong> ${item.value}</p>
-        `;
-        container.appendChild(itemDiv);
-    });
-}
+//function displayData(data) {
+//    const container = document.getElementById('data-container');
+//    container.innerHTML = ''; // Clear any existing content
+//    // Create HTML elements to display the data
+//    data.forEach(item => {
+//        const itemDiv = document.createElement('div');
+//        itemDiv.className = 'data-item';
+//        itemDiv.innerHTML = `
+//            <p><strong>Name:</strong> ${item.name}</p>
+//            <p><strong>Value:</strong> ${item.value}</p>
+//        `;
+//        container.appendChild(itemDiv);
+//    });
+//}
+//
+//function test() {
+//    console.log("qwert");
+//}
 
-function test() {
-    console.log("qwert");
-}
 
+//function getText() {
+//  //textElement = document.getElementById("messages"); // output
+//  inputElement = document.getElementById("myInput"); // input text
+//
+//  const inputText = inputElement.value;
+//  console.log("2 input text before assignation: " + inputText);
+//
+// // textElement.value = listOfMessages; //yourName + ": " + inputText;
+//
+//  console.log("textElement entered: " + inputText);
+//  console.log("your name in channels.js: " + yourName);
+//
+//  message = {
+//      "messageUser": yourName, //"Test-User-Name", //userName, //userName,
+//      "messageText": inputText //textElement
+//  }
+//
+//  //sendDataToServer(message);
+//  //fetchDataFromServer(message)
+//  //setInterval(getAllMessages, 1000);
+//  postData(message);
+//
+//}
 
-function getText() {
-  //textElement = document.getElementById("messages"); // output
-  inputElement = document.getElementById("myInput"); // input text
+const input = document.getElementById('myInput');
 
-  const inputText = inputElement.value;
-  console.log("2 input text before assignation: " + inputText);
+input.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    // Get the text entered by the user
+    const enteredText = input.value;
 
- // textElement.value = listOfMessages; //yourName + ": " + inputText;
+    message = {
+          "messageUser": yourName, //"Test-User-Name", //userName, //userName,
+          "messageText": enteredText //textElement
+      }
 
-  console.log("textElement entered: " + inputText);
-  console.log("your name in channels.js: " + yourName);
+    // Perform your desired action here
+    console.log('You entered:', enteredText);
+    postData(message);
 
-  message = {
-      "messageUser": yourName, //"Test-User-Name", //userName, //userName,
-      "messageText": inputText //textElement
+    // Clear the input field (optional)
+    input.value = '';
   }
-
-  //sendDataToServer(message);
-  //fetchDataFromServer(message)
-  //setInterval(getAllMessages, 1000);
-  postData(message);
-
-}
+});
 
 //getAllMessages();
 
