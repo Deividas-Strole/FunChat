@@ -1,6 +1,7 @@
 var inputElement;
 var textElement;
 var massage;
+//var yourName = "[[${name}]]";
 
 //console.log("----=== we are in main body!");
 

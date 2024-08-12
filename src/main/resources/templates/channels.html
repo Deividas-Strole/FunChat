@@ -6,41 +6,13 @@
     </head>
     <body>
         <h2> Welcome to Chat Channel </h2>
-
-
-            <div style="border: 2px solid black;" id="data-container"></div>
-
-
-<!--        <input type="text" id="messages"> <br>-->
-<!--        <input id="userName" th:text="${user.name}">-->
+        <div style="border: 2px solid black;" id="data-container"></div>
         <input type="text" id="myInput">
-
-<!--        <button onclick="getText()">Get Text</button>-->
-
-<!--        <form action="/action_page.php">-->
-<!--            <input type="text" id="chatBox" name="fname"><br><br>-->
-<!--            <label th:text="${user.name}"></label>-->
-<!--             <input type="text" id="yourMessage" name="lname"><br><br>-->
-<!--        </form>-->
-
-<!--        <div>-->
-<!--            <input type="text" th:field=${user.name}/>-->
-<!--        </div>-->
-
-<!--        <script>-->
-<!--            function getText() {-->
-<!--              const inputElement = document.getElementById("myInput");-->
-<!--              const inputText = inputElement.value;-->
-<!--              console.log(inputText); // Prints the entered text to the console-->
-<!--            }-->
-<!--        </script>-->
 
         <script>
             var yourName = "[[${name}]]";
-            console.log("name in channels.html:" + yourName);
-            var listOfMessages = "[[${listOfMessages}]]";
-            console.log("list of messages in channels.html:" + listOfMessages);
         </script>
+
         <script type="text/javascript" src="/js/channels.js"></script>
 
     </body>
