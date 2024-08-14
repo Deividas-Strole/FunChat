@@ -32,6 +32,7 @@ const link = document.getElementById('myLink');
 //};
 
 
+
 function submitUser() {
 
     const data = {name: name};
