@@ -32,22 +32,27 @@ const link = document.getElementById('myLink');
 //};
 
 function submitUser() {
+    const data = { name: name };
 
-    const data = {name: name};
-    
     fetch('http://localhost:8080/channels', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: document.getElementById('nameInput').value }),
+        body: JSON.stringify(data),
     })
-    .then(response => response.json())
-    .then(data => {
-        // Assuming the server returns some data to confirm success
-        window.location.href = '/channels';
+    .then(response => {
+        if (response.redirected) {
+            window.location.href = response.url;
+        } else {
+            console.error('Unexpected response:', response);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
 }
+
 
 link.addEventListener("click", () => {
     event.preventDefault(); // Prevent default link behavior

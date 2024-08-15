@@ -25,7 +25,7 @@ async function postData(data) {
 }
 
 function getAllMessages() {
-             fetch('http://localhost:8080/channels')
+             fetch('http://localhost:8080/channels3')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
