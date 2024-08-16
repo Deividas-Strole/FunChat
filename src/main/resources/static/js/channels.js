@@ -4,7 +4,7 @@ var massage;
 
 async function postData(data) {
   try {
-    const response = await fetch('http://localhost:8080/channels2', {
+    const response = await fetch('http://localhost:8080/postDataToServer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ async function postData(data) {
 }
 
 function getAllMessages() {
-             fetch('http://localhost:8080/channels3')
+             fetch('http://localhost:8080/returnAllMessages')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);

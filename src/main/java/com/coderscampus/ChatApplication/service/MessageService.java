@@ -15,7 +15,7 @@ public class MessageService {
         return listOfMessages;
     }
 
-    public List<Message> getAllMessage() {
+    public List<Message> getAllMessages() {
         return listOfMessages;
     }
 }
