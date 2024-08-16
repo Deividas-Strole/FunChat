@@ -48,7 +48,7 @@ public class ChatApplicationController {
     @GetMapping("/returnAllMessages")
     @ResponseBody
     private ResponseEntity returnAllMessages(ModelMap model) {
-        List<Message>  listOfMessages = messageService.getAllMessage();
+        List<Message>  listOfMessages = messageService.getAllMessages();
         return ResponseEntity.ok().body(listOfMessages);
     }
 }
