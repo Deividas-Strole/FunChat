@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ChatApplicationControllerTest {
 
+    // WORK IN PROGRESS
+
     @BeforeEach
     void setUp() {
     }
