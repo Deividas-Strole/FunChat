@@ -40,7 +40,7 @@ public class ChatApplicationController {
 
     @PostMapping("/postDataToServer")
     @ResponseBody
-    private ResponseEntity cannels2(@RequestBody Message message, ModelMap model) {
+    private ResponseEntity postDataToServer(@RequestBody Message message, ModelMap model) {
         List<Message>  listOfMessages = messageService.saveMessage(message);
         return ResponseEntity.ok().body(listOfMessages);
     }
