@@ -1,28 +1,41 @@
 package com.coderscampus.ChatApplication.service;
 
-import org.junit.jupiter.api.AfterEach;
+import com.coderscampus.ChatApplication.domain.Message;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MessageServiceTest {
 
-    // WORK IN PROGRESS
+    Message message = new Message();
+    Message  expectedResultMessage = new Message();
+    MessageService messageService = new MessageService();
+    List<Message> actualResult;
+    List<Message> expectedResult = new ArrayList<>();
 
     @BeforeEach
-    void setUp() {
+    void prepData() {
+
+        message.setMessageUser("TestUser");
+        message.setMessageText("Test Text");
+        actualResult = messageService.saveMessage(message);
+
+        expectedResultMessage.setMessageUser("TestUser");
+        expectedResultMessage.setMessageText("Test Text");
+
+        expectedResult.add(expectedResultMessage);
     }
 
-    @AfterEach
-    void tearDown() {
-    }
 
-    @Test
-    void saveMessage() {
+        @Test
+    void saveMessageTest() {
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
     void getAllMessages() {
+        assertEquals(expectedResult, actualResult);
     }
 }
