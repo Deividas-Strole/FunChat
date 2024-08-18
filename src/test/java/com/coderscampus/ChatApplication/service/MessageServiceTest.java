@@ -29,7 +29,7 @@ class MessageServiceTest {
     }
 
 
-        @Test
+    @Test
     void saveMessageTest() {
         assertEquals(expectedResult, actualResult);
     }
