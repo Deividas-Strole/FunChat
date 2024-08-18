@@ -1,6 +1,7 @@
 package com.coderscampus.ChatApplication.web;
 
 import com.coderscampus.ChatApplication.domain.Message;
+import com.coderscampus.ChatApplication.domain.User;
 import com.coderscampus.ChatApplication.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +27,13 @@ public class ChatApplicationController {
     }
 
     @PostMapping("/channels")
-    public String postRequestFromWelcome(@RequestBody User user) {
+    public String channelsPost(@RequestBody User user) {
         visitorsName = user.getName();
         return "redirect:/channels";
     }
 
     @GetMapping("/channels")
-    public String getRequestFromChannels(ModelMap model) {
+    public String channelsGet(ModelMap model) {
         model.addAttribute("name", visitorsName);
         return "channels";
     }
