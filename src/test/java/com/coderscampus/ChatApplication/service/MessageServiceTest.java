@@ -28,7 +28,6 @@ class MessageServiceTest {
         expectedResult.add(expectedResultMessage);
     }
 
-
         @Test
     void saveMessageTest() {
         assertEquals(expectedResult, actualResult);
