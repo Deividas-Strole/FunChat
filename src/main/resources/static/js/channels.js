@@ -43,7 +43,7 @@ function getAllMessages() {
 function populateChatBox (result) {
     const container = document.getElementById('data-container');
     container.innerHTML = ''; // Clear any existing content
-                // Create HTML elements to display the data
+    // Create HTML elements to display the data
     result.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.className = 'data-item';
