@@ -1,6 +1,5 @@
 package com.coderscampus.ChatApplication.domain;
 
-//@Entity
 public class User {
 
     String name;
