@@ -1,5 +1,7 @@
 const name = prompt("Hello! :) What is your name?");
-const link = document.getElementById('myLink');
+//const link = document.getElementById('myLink');
+const channel = document.getElementById('channel1');
+
 
 function submitUser() {
     const data = { name: name };
@@ -23,7 +25,14 @@ function submitUser() {
     });
 }
 
-link.addEventListener("click", () => {
-    event.preventDefault(); // Prevent default link behavior
-    submitUser();
+channel.addEventListener('click', function()  
+ {
+  //const valueToPass = 'some_value'; // Replace with your desired value
+
+ console.log("Received value:" + this.value);
 });
+
+//link.addEventListener("click", () => {
+//    event.preventDefault(); // Prevent default link behavior
+//    submitUser();
+//});
