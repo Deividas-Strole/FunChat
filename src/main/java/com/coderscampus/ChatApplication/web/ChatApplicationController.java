@@ -7,16 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
 public class ChatApplicationController {
 
     String visitorsName;
+    Long userId = 0L;
 
     @Autowired
     MessageService messageService;
@@ -26,13 +25,16 @@ public class ChatApplicationController {
         return "welcome";
     }
 
-    @PostMapping("/channels")
-    public String channelsPost(@RequestBody User user) {
+    @PostMapping("/channels/{channel}")
+    public String channelsPost(@RequestBody User user, @PathVariable String channel) {
         visitorsName = user.getName();
-        return "redirect:/channels";
+        userId++;
+        user.setId(userId);
+        user.setChannel(channel);
+        return "redirect:/channels/{channel}";
     }
 
-    @GetMapping("/channels")
+    @GetMapping("/channels/{channel}")
     public String channelsGet(ModelMap model) {
         model.addAttribute("name", visitorsName);
         return "channels";

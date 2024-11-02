@@ -1,36 +1,60 @@
 const name = prompt("Hello! :) What is your name?");
 //const link = document.getElementById('myLink');
-const channel = document.getElementById('channel1');
+//const channel = document.getElementById('channel1');
+const dropdown = document.getElementById('channelSelected');
 
+dropdown.addEventListener('change', function() {
+  const selectedValue = dropdown.value;  
+  console.log(selectedValue); // Do something with the selected value
 
-function submitUser() {
-    const data = { name: name };
+  const data = { name: name };
 
-    fetch('http://localhost:8080/channels', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => {
-        if (response.redirected) {
-            window.location.href = response.url;
-        } else {
-            console.error('Unexpected response:', response);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
+    fetch('http://localhost:8080/channels/' + selectedValue, {
+           method: 'POST',
+           headers: {
+               'Content-Type': 'application/json',
+           },
+           body: JSON.stringify(data),
 
-channel.addEventListener('click', function()  
- {
-  //const valueToPass = 'some_value'; // Replace with your desired value
-
- console.log("Received value:" + this.value);
+       })
+       .then(response => {
+           if (response.redirected) {
+               window.location.href = response.url;
+           } else {
+               console.error('Unexpected response:', response);
+           }
+       })
+       .catch(error => {
+           console.error('Error:', error);
+       });
 });
+
+//channel.addEventListener('click', function()  
+// {
+//   const channelName = this.value;
+//   console.log("Received value:" + channelName);
+//
+//   const data = { name: name };
+//
+//       fetch('http://localhost:8080/channels/' + channelName, {
+//           method: 'POST',
+//           headers: {
+//               'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify(data),
+//       })
+//       .then(response => {
+//           if (response.redirected) {
+//               window.location.href = response.url;
+//           } else {
+//               console.error('Unexpected response:', response);
+//           }
+//       })
+//       .catch(error => {
+//           console.error('Error:', error);
+//       });
+//
+//});
 
 //link.addEventListener("click", () => {
 //    event.preventDefault(); // Prevent default link behavior
