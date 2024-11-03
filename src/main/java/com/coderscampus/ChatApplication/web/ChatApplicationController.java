@@ -41,8 +41,8 @@ public class ChatApplicationController {
     }
 
     @GetMapping("/channels/{channel}")
-    public String getUserFromDB(ModelMap model) {
-        User user = userService.
+    public String getChannel(ModelMap model, @PathVariable String channel) {
+        messageService.getAllMessages(channel);
         model.addAttribute("name", visitorsName);
         return "channels";
     }
