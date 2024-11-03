@@ -1,11 +1,15 @@
-const name = prompt("Hello! :) What is your name?");
+//const name = prompt("Hello! :) What is your name?");
 //const link = document.getElementById('myLink');
 //const channel = document.getElementById('channel1');
+const textBox = document.getElementById("nameTextBox");
 const dropdown = document.getElementById('channelSelected');
 
 dropdown.addEventListener('change', function() {
   const selectedValue = dropdown.value;  
+  const name = textBox.value;
+
   console.log(selectedValue); // Do something with the selected value
+  console.log(name); // Do something with the selected value
 
   const data = { name: name };
 
@@ -29,6 +33,9 @@ dropdown.addEventListener('change', function() {
        });
 });
 
+
+
+//old
 //channel.addEventListener('click', function()  
 // {
 //   const channelName = this.value;

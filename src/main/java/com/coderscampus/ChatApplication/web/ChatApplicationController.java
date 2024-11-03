@@ -3,6 +3,7 @@ package com.coderscampus.ChatApplication.web;
 import com.coderscampus.ChatApplication.domain.Message;
 import com.coderscampus.ChatApplication.domain.User;
 import com.coderscampus.ChatApplication.service.MessageService;
+import com.coderscampus.ChatApplication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,10 @@ public class ChatApplicationController {
     Long userId = 0L;
 
     @Autowired
-    MessageService messageService;
+    private UserService userService;
+
+    @Autowired
+    private MessageService messageService;
 
     @GetMapping("/welcome")
     private String welcome() {
@@ -26,16 +30,19 @@ public class ChatApplicationController {
     }
 
     @PostMapping("/channels/{channel}")
-    public String channelsPost(@RequestBody User user, @PathVariable String channel) {
-        visitorsName = user.getName();
-        userId++;
-        user.setId(userId);
-        user.setChannel(channel);
+    public String saveUserToDB(@RequestBody User user, @PathVariable String channel) {
+
+        userService.createUser(user, channel);
+//        visitorsName = user.getName();
+//        userId++;
+//        user.setId(userId);
+//        user.setChannel(channel);
         return "redirect:/channels/{channel}";
     }
 
     @GetMapping("/channels/{channel}")
-    public String channelsGet(ModelMap model) {
+    public String getUserFromDB(ModelMap model) {
+        User user = userService.
         model.addAttribute("name", visitorsName);
         return "channels";
     }
