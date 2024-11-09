@@ -3,8 +3,9 @@ var textElement;
 var massage;
 
 async function postData(data) {
+
   try {
-    const response = await fetch('http://localhost:8080/postDataToServer', {
+    const response = await fetch('http://localhost:8080/postDataToServer/' + channel , {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -24,8 +25,10 @@ async function postData(data) {
   }
 }
 
+
 function getAllMessages() {
-             fetch('http://localhost:8080/returnAllMessages')
+
+             fetch('http://localhost:8080/returnAllMessages/' + channel )
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
@@ -39,6 +42,7 @@ function getAllMessages() {
                     console.error('Error fetching data:', error);
                 });
         }
+
 
 function populateChatBox (result) {
     const container = document.getElementById('data-container');

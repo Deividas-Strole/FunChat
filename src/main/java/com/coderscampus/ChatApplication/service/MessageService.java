@@ -10,11 +10,15 @@ import java.util.List;
 @Service
 public class MessageService {
 
-    @Autowired
-    MessageRepository messageRepository;
+    //@Autowired
+    MessageRepository messageRepository = new MessageRepository();
 
     public ArrayList<Message> getAllMessages(String channel) {
         return messageRepository.listOfMessagesByChannel(channel);
+    }
+
+    public void saveMessage (Message message, String channel) {
+        messageRepository.addMessageToArray(message, channel);
     }
 
 

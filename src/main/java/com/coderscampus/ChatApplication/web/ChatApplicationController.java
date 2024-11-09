@@ -42,22 +42,23 @@ public class ChatApplicationController {
 
     @GetMapping("/channels/{channel}")
     public String getChannel(ModelMap model, @PathVariable String channel) {
-        messageService.getAllMessages(channel);
+        //messageService.getAllMessages(channel);
         model.addAttribute("name", visitorsName);
+        model.addAttribute("channel", channel);
         return "channels";
     }
 
-    @PostMapping("/postDataToServer")
+    @PostMapping("/postDataToServer/{channel}")
     @ResponseBody
-    private ResponseEntity postDataToServer(@RequestBody Message message, ModelMap model) {
-        List<Message>  listOfMessages = messageService.saveMessage(message);
-        return ResponseEntity.ok().body(listOfMessages);
+    private ResponseEntity postDataToServer(@RequestBody Message message, ModelMap model , @PathVariable String channel) {
+        messageService.saveMessage(message, channel);
+        return ResponseEntity.ok().body(messageService.getAllMessages(channel));
     }
 
-    @GetMapping("/returnAllMessages")
+    @GetMapping("/returnAllMessages/{channel}")
     @ResponseBody
-    private ResponseEntity returnAllMessages(ModelMap model) {
-        List<Message>  listOfMessages = messageService.getAllMessages();
+    private ResponseEntity returnAllMessages(ModelMap model, @PathVariable String channel) {
+        List<Message> listOfMessages = messageService.getAllMessages(channel);
         return ResponseEntity.ok().body(listOfMessages);
     }
 }
