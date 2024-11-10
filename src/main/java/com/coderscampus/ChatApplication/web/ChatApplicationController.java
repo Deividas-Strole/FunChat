@@ -29,21 +29,23 @@ public class ChatApplicationController {
         return "welcome";
     }
 
-    @PostMapping("/channels/{channel}")
-    public String saveUserToDB(@RequestBody User user, @PathVariable String channel) {
+    @PostMapping("/channels/{channel}/{name}")
+    public String saveUserToDB(@RequestBody User user, @PathVariable String channel, @PathVariable String name) {
 
         userService.createUser(user, channel);
+        //String name = user.getName();
 //        visitorsName = user.getName();
 //        userId++;
 //        user.setId(userId);
 //        user.setChannel(channel);
-        return "redirect:/channels/{channel}";
+        System.out.println("name and chennel:" + name + channel);
+        return "redirect:/channels/{channel}/{name}";
     }
 
-    @GetMapping("/channels/{channel}")
-    public String getChannel(ModelMap model, @PathVariable String channel) {
+    @GetMapping("/channels/{channel}/{name}")
+    public String getChannel(ModelMap model, @PathVariable String channel, @PathVariable String name) {
         //messageService.getAllMessages(channel);
-        model.addAttribute("name", visitorsName);
+        model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
     }
@@ -51,8 +53,12 @@ public class ChatApplicationController {
     @PostMapping("/postDataToServer/{channel}")
     @ResponseBody
     private ResponseEntity postDataToServer(@RequestBody Message message, ModelMap model , @PathVariable String channel) {
+
+
+
         messageService.saveMessage(message, channel);
-        return ResponseEntity.ok().body(messageService.getAllMessages(channel));
+        //return ResponseEntity.ok().body(messageService.getAllMessages(channel));
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/returnAllMessages/{channel}")

@@ -3,7 +3,6 @@ var textElement;
 var massage;
 
 async function postData(data) {
-
   try {
     const response = await fetch('http://localhost:8080/postDataToServer/' + channel , {
       method: 'POST',
@@ -17,8 +16,8 @@ async function postData(data) {
       throw new Error('Network response was not ok');
     }
 
-    const result = await response.json();
-    populateChatBox (result);
+//    const result = await response.json();
+//    populateChatBox (result);
 
   } catch (error) {
     console.error('Error:', error);
@@ -56,6 +55,7 @@ function populateChatBox (result) {
     });
 }
 
+
 const input = document.getElementById('myInput');
 
 input.addEventListener('keydown', (event) => {
@@ -66,6 +66,9 @@ input.addEventListener('keydown', (event) => {
           "messageUser": yourName,
           "messageText": enteredText
       }
+
+     console.log("js name:" + yourName);
+     console.log("JS channel:" + channel);
 
     postData(message);
 

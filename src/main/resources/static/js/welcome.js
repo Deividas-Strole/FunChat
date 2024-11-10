@@ -9,7 +9,7 @@ dropdown.addEventListener('change', function() {
   const name = textBox.value;
   const data = { name: name };
 
-    fetch('http://localhost:8080/channels/' + selectedValue, {
+    fetch('http://localhost:8080/channels/' + selectedValue + '/' + name, {
            method: 'POST',
            headers: {
                'Content-Type': 'application/json',
