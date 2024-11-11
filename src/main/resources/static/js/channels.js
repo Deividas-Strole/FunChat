@@ -4,7 +4,7 @@ var massage;
 
 async function postData(data) {
   try {
-    const response = await fetch('http://localhost:8080/postDataToServer', {
+    const response = await fetch('http://localhost:8080/postDataToServer/' + channel , {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -16,16 +16,18 @@ async function postData(data) {
       throw new Error('Network response was not ok');
     }
 
-    const result = await response.json();
-    populateChatBox (result);
+//    const result = await response.json();
+//    populateChatBox (result);
 
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
+
 function getAllMessages() {
-             fetch('http://localhost:8080/returnAllMessages')
+
+             fetch('http://localhost:8080/returnAllMessages/' + channel )
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
@@ -40,6 +42,7 @@ function getAllMessages() {
                 });
         }
 
+
 function populateChatBox (result) {
     const container = document.getElementById('data-container');
     container.innerHTML = ''; // Clear any existing content
@@ -52,6 +55,7 @@ function populateChatBox (result) {
     });
 }
 
+
 const input = document.getElementById('myInput');
 
 input.addEventListener('keydown', (event) => {
@@ -62,6 +66,9 @@ input.addEventListener('keydown', (event) => {
           "messageUser": yourName,
           "messageText": enteredText
       }
+
+     console.log("js name:" + yourName);
+     console.log("JS channel:" + channel);
 
     postData(message);
 
