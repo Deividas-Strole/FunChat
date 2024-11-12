@@ -1,9 +1,7 @@
 package com.coderscampus.ChatApplication.web;
 
 import com.coderscampus.ChatApplication.domain.Message;
-import com.coderscampus.ChatApplication.domain.User;
 import com.coderscampus.ChatApplication.service.MessageService;
-import com.coderscampus.ChatApplication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,9 +15,6 @@ public class ChatApplicationController {
 
     String visitorsName;
     Long userId = 0L;
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private MessageService messageService;
