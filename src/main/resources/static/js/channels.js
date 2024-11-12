@@ -1,79 +1,57 @@
-var inputElement;
-var textElement;
-var massage;
+const inputElement = document.getElementById("myInput");
+const containerElement = document.getElementById("data-container");
+const postUrl = `http://localhost:8080/postDataToServer/${channel}`;
+const fetchMessagesUrl = `http://localhost:8080/returnAllMessages/${channel}`;
+const FETCH_INTERVAL = 2000; // Adjust to avoid excessive polling
 
 async function postData(data) {
   try {
-    const response = await fetch('http://localhost:8080/postDataToServer/' + channel , {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+    const response = await fetch(postUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error(`Failed to post data: ${response.statusText}`);
     }
-
-//    const result = await response.json();
-//    populateChatBox (result);
-
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error posting data:", error);
   }
 }
 
-
-function getAllMessages() {
-
-             fetch('http://localhost:8080/returnAllMessages/' + channel )
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    populateChatBox (data);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-        }
-
-
-function populateChatBox (result) {
-    const container = document.getElementById('data-container');
-    container.innerHTML = ''; // Clear any existing content
-    // Create HTML elements to display the data
-    result.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'data-item';
-        itemDiv.innerHTML = `<strong>${item.messageUser}:</strong>  ${item.messageText}<br>`;
-        container.appendChild(itemDiv);
-    });
+async function getAllMessages() {
+  try {
+    const response = await fetch(fetchMessagesUrl);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch messages: ${response.statusText}`);
+    }
+    const data = await response.json();
+    populateChatBox(data);
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+  }
 }
 
+function populateChatBox(messages) {
+  containerElement.innerHTML = "";
+  messages.forEach(({ messageUser, messageText }) => {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "data-item";
+    messageDiv.innerHTML = `<strong>${messageUser}:</strong> ${messageText}`;
+    containerElement.appendChild(messageDiv);
+  });
+}
 
-const input = document.getElementById('myInput');
+inputElement.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const enteredText = inputElement.value.trim();
+    if (!enteredText) return;
 
-input.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-        const enteredText = input.value;
-
-    message = {
-          "messageUser": yourName,
-          "messageText": enteredText
-      }
-
-     console.log("js name:" + yourName);
-     console.log("JS channel:" + channel);
-
+    const message = { messageUser: yourName, messageText: enteredText };
     postData(message);
-
-    input.value = '';
+    inputElement.value = "";
   }
 });
 
-setInterval(getAllMessages, 1000);
+setInterval(getAllMessages, FETCH_INTERVAL);
