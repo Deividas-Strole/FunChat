@@ -1,28 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html>
     <head>
         <meta charset="UTF-8">
         <title>Welcome</title>
     </head>
     <body>
         <h2>Join A Channel</h2>
-<!--        <a href="http://localhost:8080/channels" id="myLink">Channel 1</a>-->
-
-<!--        <button id="channel1" value="channel1">Channel1</button>-->
-
-        <label>Enter your name:</label>
-        <input type="text" id="nameTextBox">
-
-        <p>
-
-        <label>Choose chat channel:</label>
-        <select id="channelSelected">
-            <option value="null">Channel menu</option>
-            <option value="ch1">Channel 1</option>
-            <option value="ch2">Channel 2</option>
-            <option value="ch3">Channel 3</option>
-        </select>
-
-        <script type="text/javascript" src="/js/welcome.js"></script>
+        <form action="/channels" method="get">
+            <label>Enter your name:</label>
+            <p>
+                <input type="text" id="nameTextBox" name="name">
+            </p>
+            <label>Choose chat channel:</label>
+            <select id="channelSelected" name="channel">
+                <option value="null">Channel menu</option>
+                <option value="ch1">Channel 1</option>
+                <option value="ch2">Channel 2</option>
+                <option value="ch3">Channel 3</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
      </body>
 </html>
