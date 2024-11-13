@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat - [[${channel}]]</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <h1>Welcome to #[[${channel}]]</h1>
-<div id="data-container" style="border: 2px solid black;"></div>
-<input type="text" id="myInput" placeholder="Enter your message...">
+<div class="entry-box">
+<!--    <div id="data-container" style="border: 2px solid black;"></div>-->
+    <div id="data-container"></div>
+    <input type="text" id="myInput" placeholder="Enter your message...">
+</div>
 <script>
     const yourName = "[[${name}]]";
     const channel = "[[${channel}]]";
