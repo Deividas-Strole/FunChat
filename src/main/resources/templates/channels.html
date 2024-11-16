@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat - [[${channel}]]</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bg.css">
 </head>
 <body>
-<h1>Welcome to #[[${channel}]]</h1>
-<div class="entry-box">
-<!--    <div id="data-container" style="border: 2px solid black;"></div>-->
-    <div id="data-container"></div>
-    <input type="text" id="myInput" placeholder="Enter your message...">
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<div class="content">
+    <h1>Welcome to #[[${channel}]]</h1>
+    <div class="entry-box">
+    <!--    <div id="data-container" style="border: 2px solid black;"></div>-->
+        <div id="data-container"></div>
+        <input type="text" id="myInput" placeholder="Enter your message...">
+    </div>
+    <script>
+        const yourName = "[[${name}]]";
+        const channel = "[[${channel}]]";
+    </script>
+    <script type="text/javascript" src="/js/channels.js"></script>
 </div>
-<script>
-    const yourName = "[[${name}]]";
-    const channel = "[[${channel}]]";
-</script>
-<script type="text/javascript" src="/js/channels.js"></script>
 </body>
 </html>
