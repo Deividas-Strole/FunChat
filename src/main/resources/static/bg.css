@@ -29,7 +29,8 @@ body {
 
 .content {
   background-color:rgba(255,255,255,.8);
-  border-radius:.25em;
+  /*border-radius:.25em;*/
+  border-radius: 25%;
   box-shadow:0 0 .25em rgba(0,0,0,.25);
   box-sizing:border-box;
   left:50%;
@@ -38,6 +39,8 @@ body {
   text-align:center;
   top:50%;
   transform:translate(-50%, -50%);
+  font-family: Arial, sans-serif;
+  color: #4e2b00;
 }
 
 h1 {
