@@ -3,9 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>Welcome</title>
+        <link rel="stylesheet" href="bg.css">
     </head>
     <body>
-        <h2>Join A Channel</h2>
+
+<!--nice background-->
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div class="content">
+        <h1>WELCOME TO A DISCO CHAT</h1>
         <form action="/channels" method="get">
             <label>Enter your name:</label>
             <p>
@@ -13,12 +20,13 @@
             </p>
             <label>Choose chat channel:</label>
             <select id="channelSelected" name="channel">
-                <option value="ch1">Channel 1</option>
-                <option value="ch2">Channel 2</option>
-                <option value="ch3">Channel 3</option>
-                <option value="ch4">Channel 4</option>
+                <option value="First">Channel 1</option>
+                <option value="Second">Channel 2</option>
+                <option value="Third">Channel 3</option>
+                <option value="Fourth">Channel 4</option>
             </select>
-            <button type="submit">Submit</button>
+            <button id="button" type="submit">Submit</button>
         </form>
+    </div>
      </body>
 </html>
