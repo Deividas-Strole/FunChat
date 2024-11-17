@@ -38,7 +38,7 @@ function populateChatBox(messages) {
   messages.forEach(({ messageUser, messageText }) => {
     const messageDiv = document.createElement("div");
     messageDiv.className = "data-item";
-    messageDiv.innerHTML = `<strong>${messageUser}:</strong> ${messageText}`;
+    messageDiv.innerHTML = `<p><strong>${messageUser}:</strong> ${messageText}</p>`;
     containerElement.appendChild(messageDiv);
   });
 }
