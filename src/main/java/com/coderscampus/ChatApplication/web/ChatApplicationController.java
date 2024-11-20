@@ -12,8 +12,11 @@ import java.util.List;
 @Controller
 public class ChatApplicationController {
 
-    @Autowired
-    private MessageService messageService;
+    private final MessageService messageService;
+
+    public ChatApplicationController(MessageService messageService) {
+        this.messageService = messageService;
+    }
 
     @GetMapping("/welcome")
     private String welcome() {

@@ -8,7 +8,11 @@ import java.util.ArrayList;
 @Service
 public class MessageService {
 
-    MessageRepository messageRepository = new MessageRepository();
+    private final MessageRepository messageRepository;
+
+    public MessageService(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
+    }
 
     public ArrayList<Message> getAllMessages(String channel) {
         return messageRepository.listOfMessagesByChannel(channel);
