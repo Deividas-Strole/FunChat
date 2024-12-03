@@ -2,6 +2,7 @@ package com.coderscampus.ChatApplication.web;
 
 import com.coderscampus.ChatApplication.domain.Message;
 import com.coderscampus.ChatApplication.service.MessageService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
