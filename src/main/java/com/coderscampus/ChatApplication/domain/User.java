@@ -3,7 +3,8 @@ package com.coderscampus.ChatApplication.domain;
 public class User {
     Long userId;
     String userName;
-    String channelId;
+    String channelId; // --
+
 
     public User(Long userId, String userName, String channelId) {
         this.userId = userId;

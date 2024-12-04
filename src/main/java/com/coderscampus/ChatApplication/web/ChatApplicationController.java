@@ -1,7 +1,6 @@
 package com.coderscampus.ChatApplication.web;
 
-import com.coderscampus.ChatApplication.domain.Message;
-import com.coderscampus.ChatApplication.service.MessageService;
+import com.coderscampus.ChatApplication.domain.MessageOld;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +24,7 @@ public class ChatApplicationController {
 
     @GetMapping("/channels")
     public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, ModelMap model) {
+        messageService.createUser(name);
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
@@ -32,7 +32,7 @@ public class ChatApplicationController {
 
     @PostMapping("/postDataToServer/{channel}")
     @ResponseBody
-    private ResponseEntity postDataToServer(@RequestBody Message message, ModelMap model, @PathVariable String channel) {
+    private ResponseEntity postDataToServer(@RequestBody MessageOld message, ModelMap model, @PathVariable String channel) {
         messageService.saveMessage(message, channel);
         return ResponseEntity.ok().build();
     }
@@ -40,7 +40,7 @@ public class ChatApplicationController {
     @GetMapping("/returnAllMessages/{channel}")
     @ResponseBody
     private ResponseEntity returnAllMessages(ModelMap model, @PathVariable String channel) {
-        List<Message> listOfMessages = messageService.getAllMessages(channel);
+        List<MessageOld> listOfMessages = messageService.getAllMessages(channel);
         return ResponseEntity.ok().body(listOfMessages);
     }
 }

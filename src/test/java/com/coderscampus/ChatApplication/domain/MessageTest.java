@@ -7,7 +7,7 @@ class MessageTest {
 
     @Test
     void setMessageTextAndRetrieveIt() {
-        Message message = new Message();
+        MessageOld message = new MessageOld();
         String expectedText = "Test Message";
         message.setMessageText(expectedText);
         String actualText = message.getMessageText();
@@ -16,7 +16,7 @@ class MessageTest {
 
     @Test
     void setUserAndRetrieveIt() {
-        Message message = new Message();
+        MessageOld message = new MessageOld();
         String expectedUser = "Tester";
         message.setMessageUser(expectedUser);
         String actualUser = message.getMessageUser();
@@ -25,7 +25,7 @@ class MessageTest {
 
     @Test
     void testToString() {
-        Message message = new Message();
+        MessageOld message = new MessageOld();
         message.setMessageText("Test Message");
         message.setMessageUser("Tester");
         String expectedString = "Message{messageText='Test Message', messageUser=Tester}";

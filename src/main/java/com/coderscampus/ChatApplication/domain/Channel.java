@@ -5,6 +5,10 @@ public class Channel {
     String channelName;
     String userId;
 
+    //id
+    //name
+    //list of msgs
+
     public Channel(Long channelId, String channelName, String userId) {
         this.channelId = channelId;
         this.channelName = channelName;
