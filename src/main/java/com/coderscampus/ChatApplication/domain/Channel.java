@@ -3,35 +3,16 @@ package com.coderscampus.ChatApplication.domain;
 import java.util.ArrayList;
 
 public class Channel {
-    Long channelId;
-    String channelName;
+    String channel;
     String userId;
     ArrayList<Message> listOfMessages;
 
-    //id
-    //name
-    //list of msgs
-
-    public Channel(Long channelId, String channelName, String userId) {
-        this.channelId = channelId;
-        this.channelName = channelName;
-        this.userId = userId;
+    public String getChannel() {
+        return channel;
     }
 
-    public Long getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(Long channelId) {
-        this.channelId = channelId;
-    }
-
-    public String getChannelName() {
-        return channelName;
-    }
-
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
     public String getUserId() {
@@ -42,12 +23,20 @@ public class Channel {
         this.userId = userId;
     }
 
+    public ArrayList<Message> getListOfMessages() {
+        return listOfMessages;
+    }
+
+    public void setListOfMessages(ArrayList<Message> listOfMessages) {
+        this.listOfMessages = listOfMessages;
+    }
+
     @Override
     public String toString() {
         return "Channel{" +
-                "channelId=" + channelId +
-                ", channelName='" + channelName + '\'' +
+                "channel='" + channel + '\'' +
                 ", userId='" + userId + '\'' +
+                ", listOfMessages=" + listOfMessages +
                 '}';
     }
 }

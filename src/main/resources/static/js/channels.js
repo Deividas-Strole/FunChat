@@ -1,6 +1,6 @@
 const inputElement = document.getElementById("myInput");
 const containerElement = document.getElementById("data-container");
-const postUrl = `http://localhost:8080/postDataToServer/${channel}`;
+const postUrl = `http://localhost:8080/postDataToServer`;
 const fetchMessagesUrl = `http://localhost:8080/returnAllMessages/${channel}`;
 const FETCH_INTERVAL = 1000;
 

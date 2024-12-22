@@ -1,23 +1,21 @@
 package com.coderscampus.ChatApplication.domain;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 public class User {
-    Long userId;
-    String userName;
-    String channelId; // --
+
+    private static final AtomicLong counter = new AtomicLong(1);
+    private final Long userId;
+    private String userName;
 
 
-    public User(Long userId, String userName, String channelId) {
-        this.userId = userId;
+    public User(String userName) {
+        this.userId =counter.getAndIncrement();
         this.userName = userName;
-        this.channelId = channelId;
     }
 
     public Long getUserId() {
         return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getUserName() {
@@ -28,20 +26,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
-    }
 
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
-                ", channelId='" + channelId + '\'' +
                 '}';
     }
 }
