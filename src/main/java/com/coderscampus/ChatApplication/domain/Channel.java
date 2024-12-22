@@ -1,9 +1,12 @@
 package com.coderscampus.ChatApplication.domain;
 
+import java.util.ArrayList;
+
 public class Channel {
     Long channelId;
     String channelName;
     String userId;
+    ArrayList<Message> listOfMessages;
 
     //id
     //name
