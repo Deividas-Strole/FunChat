@@ -30,12 +30,15 @@ public class ChatApplicationController {
         return "welcome";
     }
 
-    @GetMapping("/channels")
+    @PostMapping("/channels")
     public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, ModelMap model) {
+        //System.out.println("channel and name: " + channel + name);
         Long userId = userService.createUser(name);
-        Message emptyMessage = new Message(userId, null, null);
+        //System.out.println("userId: " + userId);
+        Message emptyMessage = new Message(name, null, null);
+        //System.out.println("empty mess: " + emptyMessage);
         channelService.addToChannel(channel, emptyMessage);
-
+       // System.out.println("name and channel: " + name + channel);
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
@@ -44,14 +47,15 @@ public class ChatApplicationController {
     @PostMapping("/postDataToServer")
     @ResponseBody
     private ResponseEntity postDataToServer(@RequestBody Message message, ModelMap model) {
+        System.out.println("name, text, channel: " + message.getName() + message.getMessageText() + message.getChannel());
         channelService.addToChannel(message.getChannel(), message);
         //messageService.saveMessage(message, channel);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/returnAllMessages/{channel}")
+    @PostMapping("/returnAllMessages")
     @ResponseBody
-    private ResponseEntity returnAllMessages(ModelMap model, @PathVariable String channel) {
+    private ResponseEntity returnAllMessages(ModelMap model, @RequestBody String channel) {
         List<Message> listOfMessages = channelService.getAllMessages(channel);
         return ResponseEntity.ok().body(listOfMessages);
     }

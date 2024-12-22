@@ -10,14 +10,24 @@ public class Message {
     //channel id
 
     //String messageUser;
-    Long userId;
+    //Long userId;
+
+    String name;
     String messageText;
     String channel;
 
-    public Message(Long userId, String messageText, String channel) {
-        this.userId = userId;
+    public Message(String name, String messageText, String channel) {
+        this.name = name;
         this.messageText = messageText;
         this.channel = channel;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getMessageText() {
@@ -28,20 +38,21 @@ public class Message {
         this.messageText = messageText;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getChannel() {
         return channel;
     }
 
     public void setChannel(String channel) {
         this.channel = channel;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "name='" + name + '\'' +
+                ", messageText='" + messageText + '\'' +
+                ", channel='" + channel + '\'' +
+                '}';
     }
 
     //    public String getMessageUser() {
@@ -53,11 +64,5 @@ public class Message {
 //    }
 
 
-    @Override
-    public String toString() {
-        return "Message{" +
-                "userId=" + userId +
-                ", messageText='" + messageText + '\'' +
-                '}';
-    }
+
 }

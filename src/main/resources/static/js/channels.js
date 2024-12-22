@@ -1,7 +1,7 @@
 const inputElement = document.getElementById("myInput");
 const containerElement = document.getElementById("data-container");
 const postUrl = `http://localhost:8080/postDataToServer`;
-const fetchMessagesUrl = `http://localhost:8080/returnAllMessages/${channel}`;
+const fetchMessagesUrl = `http://localhost:8080/returnAllMessages`;
 const FETCH_INTERVAL = 1000;
 
 async function postData(data) {
@@ -20,9 +20,15 @@ async function postData(data) {
   }
 }
 
-async function getAllMessages() {
+async function getAllMessages(channel) {
+
+    // console.log("channel: " + channel); channel is here
   try {
-    const response = await fetch(fetchMessagesUrl);
+    const response = await fetch(fetchMessagesUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ channel }),
+    });
     if (!response.ok) {
       throw new Error(`Failed to fetch messages: ${response.statusText}`);
     }
@@ -32,6 +38,19 @@ async function getAllMessages() {
     console.error("Error fetching messages:", error);
   }
 }
+
+//async function getAllMessages() {
+//  try {
+//    const response = await fetch(fetchMessagesUrl);
+//    if (!response.ok) {
+//      throw new Error(`Failed to fetch messages: ${response.statusText}`);
+//    }
+//    const data = await response.json();
+//    populateChatBox(data);
+//  } catch (error) {
+//    console.error("Error fetching messages:", error);
+//  }
+//}
 
 function populateChatBox(messages) {
   containerElement.innerHTML = "";
@@ -46,12 +65,17 @@ function populateChatBox(messages) {
 inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     const enteredText = inputElement.value.trim();
+
+    //console.log("name + text + chennel in input: " + yourName + enteredText + channel);
+
     if (!enteredText) return;
 
-    const message = { messageUser: yourName, messageText: enteredText };
+    const message = { name: yourName, messageText: enteredText, channel: channel };
     postData(message);
     inputElement.value = "";
   }
 });
 
-setInterval(getAllMessages, FETCH_INTERVAL);
+setInterval(() => getAllMessages(channel), FETCH_INTERVAL);
+
+//setInterval(getAllMessages(channel), FETCH_INTERVAL);

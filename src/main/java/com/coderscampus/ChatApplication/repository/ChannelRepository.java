@@ -11,6 +11,9 @@ public class ChannelRepository {
     private final HashMap<String, ArrayList<Message>> channelMessages = new HashMap<>();
 
 
+
+
+
     public void addMessageToArray(String channel, Message message) {
         if (message != null) {
             channelMessages.computeIfAbsent(channel, k -> new ArrayList<>()).add(message);

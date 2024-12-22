@@ -9,11 +9,13 @@ import java.util.ArrayList;
 
 @Service
 public class ChannelService {
-    private final ChannelRepository channelRepository;
 
+    private final ChannelRepository channelRepository;
     public ChannelService(ChannelRepository channelRepository) {
         this.channelRepository = channelRepository;
     }
+
+    GOT STUCK HERE BELOW
 
     public void addToChannel(String channel, Message message) {
         channelRepository.addMessageToArray(channel, message);
