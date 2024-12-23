@@ -34,7 +34,9 @@ public class ChatApplicationController {
     }
 
     @PostMapping("/channels")
-    public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, ModelMap model) {
+    public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, @RequestParam("isNew") Boolean isNew,ModelMap model) {
+        // System.out.println("isNew: " + isNew); works!!!
+
         Long userId = userService.createUser(name);
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);

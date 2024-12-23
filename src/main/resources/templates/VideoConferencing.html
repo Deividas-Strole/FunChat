@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Conferencing</title>
+</head>
+<body>
+<h1>Simple Video Conferencing</h1>
+<video id="localVideo" autoplay playsinline muted></video>
+<video id="remoteVideo" autoplay playsinline></video>
+<button id="startButton">Start Call</button>
+<button id="hangupButton" disabled>Hang Up</button>
+
+<script>
+    const startButton = document.getElementById('startButton');
+    const hangupButton = document.getElementById('hangupButton');
+    const localVideo = document.getElementById('localVideo');
+    const remoteVideo = document.getElementById('remoteVideo');
+
+    let localStream;
+    let peerConnection;
+
+    const servers = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+
+    startButton.addEventListener('click', async () => {
+        startButton.disabled = true;
+        hangupButton.disabled = false;
+
+        // Get local media stream
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        localVideo.srcObject = localStream;
+
+        // Set up WebRTC connection
+        peerConnection = new RTCPeerConnection(servers);
+
+        // Add local stream tracks to the peer connection
+        localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
+        // Handle incoming remote streams
+        peerConnection.ontrack = event => {
+            if (!remoteVideo.srcObject) {
+                remoteVideo.srcObject = event.streams[0];
+            }
+        };
+
+        // Create offer and set up signaling
+        const offer = await peerConnection.createOffer();
+        await peerConnection.setLocalDescription(offer);
+
+        // Simulated signaling (replace with a signaling server in production)
+        setTimeout(async () => {
+            // Simulating receiving an answer
+            const answer = new RTCSessionDescription(offer); // Replace with remote peer's answer
+            await peerConnection.setRemoteDescription(answer);
+        }, 1000);
+    });
+
+    hangupButton.addEventListener('click', () => {
+        peerConnection.close();
+        localStream.getTracks().forEach(track => track.stop());
+        hangupButton.disabled = true;
+        startButton.disabled = false;
+    });
+</script>
+</body>
+</html>
