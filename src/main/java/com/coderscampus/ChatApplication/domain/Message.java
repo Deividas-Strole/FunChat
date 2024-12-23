@@ -1,11 +1,22 @@
 package com.coderscampus.ChatApplication.domain;
 
-import java.util.Objects;
-
 public class Message {
 
-    String messageUser;
+    String name;
     String messageText;
+
+    public Message(String name, String messageText) {
+        this.name = name;
+        this.messageText = messageText;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getMessageText() {
         return messageText;
@@ -15,32 +26,13 @@ public class Message {
         this.messageText = messageText;
     }
 
-    public String getMessageUser() {
-        return messageUser;
-    }
-
-    public void setMessageUser(String messageUser) {
-        this.messageUser = messageUser;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Message message = (Message) o;
-        return Objects.equals(messageUser, message.messageUser) && Objects.equals(messageText, message.messageText);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(messageUser, messageText);
-    }
 
     @Override
     public String toString() {
         return "Message{" +
-                "messageText='" + messageText + '\'' +
-                ", messageUser=" + messageUser +
+                "name='" + name + '\'' +
+                ", messageText='" + messageText + '\'' +
                 '}';
     }
+
 }
