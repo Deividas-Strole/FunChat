@@ -1,7 +1,6 @@
 package com.coderscampus.ChatApplication.service;
 
 import com.coderscampus.ChatApplication.domain.Message;
-import com.coderscampus.ChatApplication.domain.MessageOld;
 import com.coderscampus.ChatApplication.repository.ChannelRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,6 @@ public class ChannelService {
         this.channelRepository = channelRepository;
     }
 
-    GOT STUCK HERE BELOW
-
     public void addToChannel(String channel, Message message) {
         channelRepository.addMessageToArray(channel, message);
     }
@@ -24,6 +21,4 @@ public class ChannelService {
     public ArrayList<Message> getAllMessages(String channel) {
         return channelRepository.listOfMessagesByChannel(channel);
     }
-
-
 }

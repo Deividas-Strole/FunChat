@@ -1,15 +1,18 @@
 package com.coderscampus.ChatApplication.web;
 
+import com.coderscampus.ChatApplication.domain.ChannelRequest;
+import com.coderscampus.ChatApplication.domain.DataRequest;
 import com.coderscampus.ChatApplication.domain.Message;
-import com.coderscampus.ChatApplication.domain.MessageOld;
-
 import com.coderscampus.ChatApplication.service.ChannelService;
 import com.coderscampus.ChatApplication.service.MessageService;
 import com.coderscampus.ChatApplication.service.UserService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -32,13 +35,9 @@ public class ChatApplicationController {
 
     @PostMapping("/channels")
     public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, ModelMap model) {
-        //System.out.println("channel and name: " + channel + name);
-        Long userId = userService.createUser(name);
-        //System.out.println("userId: " + userId);
-        Message emptyMessage = new Message(name, null, null);
-        //System.out.println("empty mess: " + emptyMessage);
-        channelService.addToChannel(channel, emptyMessage);
-       // System.out.println("name and channel: " + name + channel);
+        //Long userId = userService.createUser(name);
+       // Message emptyMessage = new Message(name, null;
+       // channelService.addToChannel(channel, emptyMessage);
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
@@ -46,17 +45,18 @@ public class ChatApplicationController {
 
     @PostMapping("/postDataToServer")
     @ResponseBody
-    private ResponseEntity postDataToServer(@RequestBody Message message, ModelMap model) {
-        System.out.println("name, text, channel: " + message.getName() + message.getMessageText() + message.getChannel());
-        channelService.addToChannel(message.getChannel(), message);
-        //messageService.saveMessage(message, channel);
+    private ResponseEntity postDataToServer(@RequestBody DataRequest dataRequest, ModelMap model) {
+        String channel = dataRequest.getChannel();
+        Message message = dataRequest.getMessage();
+        channelService.addToChannel(channel, message);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/returnAllMessages")
     @ResponseBody
-    private ResponseEntity returnAllMessages(ModelMap model, @RequestBody String channel) {
-        List<Message> listOfMessages = channelService.getAllMessages(channel);
+    private ResponseEntity <List<Message>>returnAllMessages(ModelMap model, @RequestBody ChannelRequest channelRequest) {
+        String channel = channelRequest.getChannel();
+        ArrayList<Message> listOfMessages = channelService.getAllMessages(channel);
         return ResponseEntity.ok().body(listOfMessages);
     }
 }

@@ -1,25 +1,13 @@
 package com.coderscampus.ChatApplication.domain;
 
-import java.util.Objects;
-
 public class Message {
-
-    //id
-    //user
-    //content
-    //channel id
-
-    //String messageUser;
-    //Long userId;
 
     String name;
     String messageText;
-    String channel;
 
-    public Message(String name, String messageText, String channel) {
+    public Message(String name, String messageText) {
         this.name = name;
         this.messageText = messageText;
-        this.channel = channel;
     }
 
     public String getName() {
@@ -38,31 +26,13 @@ public class Message {
         this.messageText = messageText;
     }
 
-    public String getChannel() {
-        return channel;
-    }
-
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
 
     @Override
     public String toString() {
         return "Message{" +
                 "name='" + name + '\'' +
                 ", messageText='" + messageText + '\'' +
-                ", channel='" + channel + '\'' +
                 '}';
     }
-
-    //    public String getMessageUser() {
-//        return messageUser;
-//    }
-//
-//    public void setMessageUser(String messageUser) {
-//        this.messageUser = messageUser;
-//    }
-
-
 
 }
