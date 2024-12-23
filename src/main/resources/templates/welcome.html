@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Welcome</title>
-        <link rel="stylesheet" href="bg.css">
-    </head>
-    <body>
-
-    <div class="bg"></div>
-    <div class="bg bg2"></div>
-    <div class="bg bg3"></div>
-    <div class="content">
-        <h1>WELCOME TO FUN CHAT</h1>
-        <form action="/channels" method="post">
-            <label>Enter your name:</label>
-            <p>
-                <input type="text" id="nameTextBox" name="name">
-            </p>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="bg.css">
+    <style>
+        #channel-selector {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<div class="content">
+    <h1>WELCOME TO FUN CHAT</h1>
+    <form action="/channels" method="post" onsubmit="storeNameInSession(); return true;">
+        <label>Enter your name:</label>
+        <p>
+            <input type="text" id="nameTextBox" name="name" oninput="toggleChannelSelector()">
+        </p>
+        <div id="channel-selector">
             <label>Choose chat channel:</label>
             <select id="channelSelected" name="channel">
                 <option value="First">Channel 1</option>
@@ -25,7 +30,95 @@
                 <option value="Fourth">Channel 4</option>
             </select>
             <button id="button" type="submit">Submit</button>
-        </form>
-    </div>
-     </body>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Load name from sessionStorage on page load
+    window.onload = function() {
+        const savedName = sessionStorage.getItem("userName");
+        const nameTextBox = document.getElementById("nameTextBox");
+        const channelSelector = document.getElementById("channel-selector");
+
+        if (savedName) {
+            nameTextBox.value = savedName;
+            channelSelector.style.display = "block"; // Show the channel selector
+        }
+    };
+
+    function toggleChannelSelector() {
+        const nameTextBox = document.getElementById("nameTextBox");
+        const channelSelector = document.getElementById("channel-selector");
+
+        if (nameTextBox.value.trim() !== "") {
+            channelSelector.style.display = "block"; // Show if text is present
+        } else {
+            channelSelector.style.display = "none"; // Hide if empty
+        }
+    }
+
+    function storeNameInSession() {
+        const nameTextBox = document.getElementById("nameTextBox");
+        const name = nameTextBox.value.trim();
+
+        if (name) {
+            sessionStorage.setItem("userName", name); // Store name in sessionStorage
+        }
+    }
+</script>
+</body>
 </html>
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--    <head>-->
+<!--        <meta charset="UTF-8">-->
+<!--        <title>Welcome</title>-->
+<!--        <link rel="stylesheet" href="bg.css">-->
+<!--        <style>-->
+<!--            #channel-selector {-->
+<!--            display: none;-->
+<!--        }-->
+<!--        </style>-->
+<!--    </head>-->
+<!--    <body>-->
+<!--    <div class="bg"></div>-->
+<!--    <div class="bg bg2"></div>-->
+<!--    <div class="bg bg3"></div>-->
+<!--    <div class="content">-->
+<!--        <h1>WELCOME TO FUN CHAT</h1>-->
+<!--        <form action="/channels" method="post">-->
+<!--            <label>Enter your name:</label>-->
+<!--            <p>-->
+<!--                <input type="text" id="nameTextBox" name="name" oninput="toggleChannelSelector()">-->
+<!--            </p>-->
+<!--            <div id="channel-selector">-->
+<!--                <label>Choose chat channel:</label>-->
+<!--                    <select id="channelSelected" name="channel">-->
+<!--                        <option value="First">Channel 1</option>-->
+<!--                        <option value="Second">Channel 2</option>-->
+<!--                        <option value="Third">Channel 3</option>-->
+<!--                        <option value="Fourth">Channel 4</option>-->
+<!--                    </select>-->
+<!--                <button id="button" type="submit">Submit</button>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <script>-->
+<!--        function toggleChannelSelector() {-->
+<!--            const nameTextBox = document.getElementById("nameTextBox");-->
+<!--            const channelSelector = document.getElementById("channel-selector");-->
+
+<!--            if (nameTextBox.value.trim() !== "") {-->
+<!--                channelSelector.style.display = "block";-->
+<!--            } else {-->
+<!--                channelSelector.style.display = "none";-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
+<!--    </body>-->
+<!--</html>-->
