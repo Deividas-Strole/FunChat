@@ -14,7 +14,6 @@ public class UserService {
     }
 
     public Long createUser(String name) {
-
         User newUser = new User(name);
         userRepository.addNewUser(newUser);
         return newUser.getUserId();

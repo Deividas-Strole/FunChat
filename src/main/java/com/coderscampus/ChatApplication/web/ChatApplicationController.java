@@ -35,9 +35,7 @@ public class ChatApplicationController {
 
     @PostMapping("/channels")
     public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, ModelMap model) {
-        //Long userId = userService.createUser(name);
-       // Message emptyMessage = new Message(name, null;
-       // channelService.addToChannel(channel, emptyMessage);
+        Long userId = userService.createUser(name);
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
