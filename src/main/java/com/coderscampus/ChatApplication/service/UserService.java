@@ -13,8 +13,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Long createUser(String name) {
-        User newUser = new User(name);
+    public Long createUser(String name, String channel) {
+
+
+        if (userRepository.getUserMap().containsKey(name)) {
+            System.out.println("name already in db!!!");
+            return 0L;
+        }
+
+        User newUser = new User(name, channel);
         userRepository.addNewUser(newUser);
         return newUser.getUserId();
     }

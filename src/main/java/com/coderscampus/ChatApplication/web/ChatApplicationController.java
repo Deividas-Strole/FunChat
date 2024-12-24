@@ -38,12 +38,13 @@ public class ChatApplicationController {
         System.out.println("isNew in /channels: " + isNew);
 
 
-
-
         if (isNew == false) {
             model.addAttribute("listOfMessages", channelService.getAllMessages(channel));
         }
-        Long userId = userService.createUser(name);
+        Long userId = userService.createUser(name, channel);
+        if (userId == 0L) {
+            return "welcome";
+        }
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
