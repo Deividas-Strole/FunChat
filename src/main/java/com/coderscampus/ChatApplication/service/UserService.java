@@ -16,7 +16,8 @@ public class UserService {
     public Long createUser(String name, String channel) {
 
 
-        if (userRepository.getUserMap().containsKey(name)) {
+        if (userRepository.getUserMap().containsKey(name) &&
+                userRepository.getUserMap().get(name).equals(channel)) {
             System.out.println("name already in db!!!");
             return 0L;
         }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
@@ -72,8 +72,21 @@
 
         if (name) {
             sessionStorage.setItem("userName", name); // Store name in sessionStorage
+            console.log("********sessionStorage.setItem:", sessionStorage.getItem(name));
         }
     }
+
+    const name = "[[${name}]]";
+        if (name != "") {
+            console.log("Before removal:", sessionStorage.getItem(name));
+            sessionStorage.removeItem(name);
+            console.log("After removal:", sessionStorage.getItem(name));
+
+            alert("Only unique names are allowed in each channel. Because this name is already taken, please create a different one. Thank you!");
+        }
+        console.log("name: " + name);
+
+
 </script>
 </body>
 </html>
