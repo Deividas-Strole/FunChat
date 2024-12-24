@@ -25,13 +25,20 @@
             </p>
         </div>
         <div id="channel-selector">
-            <label>Choose chat channel:</label>
+            <label>Channel:</label>
             <select id="channelSelected" name="channel">
+                <option value="" disabled selected>Select a channel</option>
                 <option value="First">Channel 1</option>
                 <option value="Second">Channel 2</option>
                 <option value="Third">Channel 3</option>
                 <option value="Fourth">Channel 4</option>
             </select>
+<!--            <select id="channelSelected" name="channel">-->
+<!--                <option value="First">Channel 1</option>-->
+<!--                <option value="Second">Channel 2</option>-->
+<!--                <option value="Third">Channel 3</option>-->
+<!--                <option value="Fourth">Channel 4</option>-->
+<!--            </select>-->
             <button id="button" type="submit">Submit</button>
         </div>
     </form>
@@ -76,7 +83,11 @@
         }
     }
 
+
+
+
     const name = "[[${name}]]";
+    console.log("name: " + name);
         if (name != "") {
             console.log("Before removal:", sessionStorage.getItem(name));
             sessionStorage.removeItem(name);
