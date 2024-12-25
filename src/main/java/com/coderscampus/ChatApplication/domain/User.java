@@ -7,11 +7,13 @@ public class User {
     private static final AtomicLong counter = new AtomicLong(1);
     private final Long userId;
     private String userName;
+    private String channel;
 
 
-    public User(String userName) {
+    public User(String userName, String channel) {
         this.userId =counter.getAndIncrement();
         this.userName = userName;
+        this.channel = channel;
     }
 
     public Long getUserId() {
@@ -26,12 +28,20 @@ public class User {
         this.userName = userName;
     }
 
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
 
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
+                ", channel='" + channel + '\'' +
                 '}';
     }
 }

@@ -65,4 +65,8 @@ inputElement.addEventListener("keydown", (event) => {
   }
 });
 
+if (listOfMessages != "") {
+
+    console.log("listOfMessages in js channel: " + listOfMessages);
+}
 setInterval(() => getAllMessages(channel), FETCH_INTERVAL);
