@@ -9,11 +9,16 @@ import java.util.Map;
 @Repository
 public class UserRepository {
 
-    private final Map <Long, String> userMap = new HashMap<>();
+    private final Map <String, String> userMap = new HashMap<>();
 
     public void addNewUser(User newUser) {
-        userMap.put(newUser.getUserId(), newUser.getUserName());
+        userMap.put(newUser.getUserName(), newUser.getChannel());
     }
+
+    public Map<String, String> getUserMap() {
+        return userMap;
+    }
+
 
     public String getUserById(Long userId) {
         return userMap.get(userId);

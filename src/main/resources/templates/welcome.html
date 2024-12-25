@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
@@ -25,13 +25,20 @@
             </p>
         </div>
         <div id="channel-selector">
-            <label>Choose chat channel:</label>
-            <select id="channelSelected" name="channel">
+            <label>Channel:</label>
+            <select id="channelSelected" name="channel" onchange="checkForDuplicateName()">
+                <option value="" disabled selected>Select a channel</option>
                 <option value="First">Channel 1</option>
                 <option value="Second">Channel 2</option>
                 <option value="Third">Channel 3</option>
                 <option value="Fourth">Channel 4</option>
             </select>
+<!--            <select id="channelSelected" name="channel">-->
+<!--                <option value="First">Channel 1</option>-->
+<!--                <option value="Second">Channel 2</option>-->
+<!--                <option value="Third">Channel 3</option>-->
+<!--                <option value="Fourth">Channel 4</option>-->
+<!--            </select>-->
             <button id="button" type="submit">Submit</button>
         </div>
     </form>
@@ -72,8 +79,38 @@
 
         if (name) {
             sessionStorage.setItem("userName", name); // Store name in sessionStorage
+            console.log("********sessionStorage.setItem:", sessionStorage.getItem(name));
         }
     }
+
+    function checkForDuplicateName() {
+        const channelSelected = document.getElementById("channelSelected").value;
+        const name = document.getElementById("nameTextBox");
+        console.log(`Channel selected + name: ${channelSelected} + ${name}`);
+
+        fetch('/checkDuplicate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `channel=${encodeURIComponent(channelSelected)}&name=${encodeURIComponent(name.value)}`
+        })
+        .then(response => response.text())
+        .then(data => {
+             console.log("Response from server:", data);
+             // Process the server response
+             if (data === "true") {
+                alert("Duplicate name found for the selected channel. A select channel can have only unique names. Please choose another name. Thank you!");
+                name.value = "";
+                toggleChannelSelector();
+            }
+         })
+          .catch(error => {
+            console.error("Error:", error);
+         });
+
+    }
+
 </script>
 </body>
 </html>

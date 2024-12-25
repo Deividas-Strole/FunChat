@@ -10,7 +10,7 @@ public class User {
     private String channel;
 
 
-    public User(String userName) {
+    public User(String userName, String channel) {
         this.userId =counter.getAndIncrement();
         this.userName = userName;
         this.channel = channel;

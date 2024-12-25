@@ -33,17 +33,32 @@ public class ChatApplicationController {
         return "welcome";
     }
 
+
+    @PostMapping("/checkDuplicate")
+    @ResponseBody
+    private ResponseEntity checkForDuplicateNames(@RequestParam("name") String name, @RequestParam("channel") String channel) {
+        System.out.println("name and channel in controller from js: " + name + channel);
+        //boolean isDuplicate = userService.checkForDuplicateName(name, channel);
+        //return ResponseEntity.ok().body();
+        boolean result = userService.checkForDuplicateName(name, channel);
+        System.out.println("result in controller: " + result);
+        return ResponseEntity.ok(result);
+
+    }
+
     @PostMapping("/channels")
     public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, @RequestParam("isNew") Boolean isNew,ModelMap model) {
         System.out.println("isNew in /channels: " + isNew);
 
 
-
-
-        if (isNew == false) {
-            model.addAttribute("listOfMessages", channelService.getAllMessages(channel));
-        }
-        Long userId = userService.createUser(name);
+//        if (isNew == false) {
+//            model.addAttribute("listOfMessages", channelService.getAllMessages(channel));
+//        }
+        Long userId = userService.createUser(name, channel);
+//        if (userId == 0L) {
+//            model.addAttribute("name", name);
+//            return "welcome";
+//        }
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
