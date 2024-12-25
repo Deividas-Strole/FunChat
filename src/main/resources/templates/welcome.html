@@ -84,9 +84,32 @@
     }
 
     function checkForDuplicateName() {
+
+
+
         const channelSelected = document.getElementById("channelSelected").value;
         const name = document.getElementById("nameTextBox");
         console.log(`Channel selected + name: ${channelSelected} + ${name}`);
+
+        const savedName = sessionStorage.getItem(name.value); // Replace "userName" with your sessionStorage key
+
+        console.log("name.value + savedName" + name.value + savedName);
+
+        console.log("Displaying all sessionStorage values:");
+    for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i); // Get the key at index i
+        const value = sessionStorage.getItem(key); // Get the value for the key
+        console.log(`key value *****: ${key}: ${value}`);
+    }
+
+         if (savedName) {
+             console.log("Name found in sessionStorage:", savedName);
+                //return true; // Name exists in sessionStorage
+         } else {
+             console.log("No name found in sessionStorage.");
+             //return false; // Name does not exist in sessionStorage
+        }
+
 
         fetch('/checkDuplicate', {
         method: 'POST',
