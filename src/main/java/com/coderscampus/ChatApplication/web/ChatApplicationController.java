@@ -46,6 +46,12 @@ public class ChatApplicationController {
 
     }
 
+    @GetMapping("/channels")
+    public String redirectToWelcome() {
+        return "welcome";
+    }
+
+
     @PostMapping("/channels")
     public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, @RequestParam("isNew") Boolean isNew,ModelMap model) {
         System.out.println("isNew in /channels: " + isNew);
