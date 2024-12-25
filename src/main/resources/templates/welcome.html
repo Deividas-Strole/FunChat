@@ -26,7 +26,7 @@
         </div>
         <div id="channel-selector">
             <label>Channel:</label>
-            <select id="channelSelected" name="channel">
+            <select id="channelSelected" name="channel" onchange="checkForDuplicateName()">
                 <option value="" disabled selected>Select a channel</option>
                 <option value="First">Channel 1</option>
                 <option value="Second">Channel 2</option>
@@ -83,20 +83,33 @@
         }
     }
 
+    function checkForDuplicateName() {
+        const channelSelected = document.getElementById("channelSelected").value;
+        const name = document.getElementById("nameTextBox");
+        console.log(`Channel selected + name: ${channelSelected} + ${name}`);
 
+        fetch('/checkDuplicate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `channel=${encodeURIComponent(channelSelected)}&name=${encodeURIComponent(name.value)}`
+        })
+        .then(response => response.text())
+        .then(data => {
+             console.log("Response from server:", data);
+             // Process the server response
+             if (data === "true") {
+                alert("Duplicate name found for the selected channel. A select channel can have only unique names. Please choose another name. Thank you!");
+                name.value = "";
+                toggleChannelSelector();
+            }
+         })
+          .catch(error => {
+            console.error("Error:", error);
+         });
 
-
-    const name = "[[${name}]]";
-    console.log("name: " + name);
-        if (name != "") {
-            console.log("Before removal:", sessionStorage.getItem(name));
-            sessionStorage.removeItem(name);
-            console.log("After removal:", sessionStorage.getItem(name));
-
-            alert("Only unique names are allowed in each channel. Because this name is already taken, please create a different one. Thank you!");
-        }
-        console.log("name: " + name);
-
+    }
 
 </script>
 </body>

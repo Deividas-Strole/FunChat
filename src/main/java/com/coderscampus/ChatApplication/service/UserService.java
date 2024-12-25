@@ -13,15 +13,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Long createUser(String name, String channel) {
-
-
+    public boolean checkForDuplicateName(String name, String channel) {
         if (userRepository.getUserMap().containsKey(name) &&
                 userRepository.getUserMap().get(name).equals(channel)) {
             System.out.println("name already in db!!!");
-            return 0L;
+            return true;
+        } else {
+            return false;
         }
+    }
 
+    public Long createUser(String name, String channel) {
         User newUser = new User(name, channel);
         userRepository.addNewUser(newUser);
         return newUser.getUserId();
