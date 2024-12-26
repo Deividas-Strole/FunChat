@@ -56,24 +56,19 @@ public class ChatApplicationController {
     @PostMapping("/channels")
     public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, @RequestParam("isNew") Boolean isNew,ModelMap model, HttpSession session) {
         System.out.println("isNew in /channels: " + isNew);
-
         Long userId = userService.createUser(name, channel);
         session.setAttribute("name", name);
-//        model.addAttribute("name", name);
-//        model.addAttribute("channel", channel);
         return "redirect:/channels/" + channel;
     }
 
     @GetMapping("/channels/{channel}")
     public String redirectToChannel(@PathVariable String channel, HttpSession session, ModelMap model) {
         String name = (String) session.getAttribute("name");
+        System.out.println("name in redirect getmapping: " + name);
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
     }
-
-
-
 
     @PostMapping("/postDataToServer")
     @ResponseBody

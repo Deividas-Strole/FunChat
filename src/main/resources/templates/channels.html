@@ -30,6 +30,14 @@
         <input type="text" id="myInput" placeholder="Enter your message...">
     </div>
     <script>
+        window.onload = function() {
+        const savedName = sessionStorage.getItem("userName");
+        if (savedName === null) {
+        // go to welcome
+        window.location.href = '/welcome';
+        }
+        //console.log("you are in channels. user name from sessionStorage: " + savedName);
+        }
         const yourName = "[[${name}]]";
         const channel = "[[${channel}]]";
         const listOfMessages = "[[${listOfMessages}]]";
