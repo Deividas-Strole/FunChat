@@ -5,7 +5,6 @@ const fetchMessagesUrl = `http://localhost:8080/returnAllMessages`;
 const FETCH_INTERVAL = 1000;
 
 async function postData(data) {
-    console.log("Posting message:", { channel, data });
     const dataToController = { channel: channel, message: data };
     try {
         const response = await fetch(postUrl, {
@@ -16,14 +15,12 @@ async function postData(data) {
         if (!response.ok) {
             throw new Error(`Failed to post data: ${response.statusText}`);
         }
-        console.log("Message posted successfully");
     } catch (error) {
         console.error("Error posting data:", error);
     }
 }
 
 async function getAllMessages(channel) {
-    console.log("Fetching messages for channel:", channel);
     try {
         const response = await fetch(fetchMessagesUrl, {
             method: "POST",
@@ -43,7 +40,7 @@ async function getAllMessages(channel) {
 
 function populateChatBox(messages) {
     containerElement.innerHTML = "";
-    messages.forEach((message) => {  // Remove the destructuring here
+    messages.forEach((message) => {
         const messageDiv = document.createElement("div");
         messageDiv.className = "data-item";
         messageDiv.innerHTML = `<p><strong>${message.name}:</strong> ${message.messageText}</p>`;
@@ -54,19 +51,11 @@ function populateChatBox(messages) {
 inputElement.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     const enteredText = inputElement.value.trim();
-
-    //console.log("name + text + chennel in input: " + yourName + enteredText + channel);
-
     if (!enteredText) return;
-
     const message = { name: yourName, messageText: enteredText };
     postData(message);
     inputElement.value = "";
   }
 });
 
-if (listOfMessages != "") {
-
-    console.log("listOfMessages in js channel: " + listOfMessages);
-}
 setInterval(() => getAllMessages(channel), FETCH_INTERVAL);

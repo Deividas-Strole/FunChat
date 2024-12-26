@@ -28,5 +28,4 @@ public class UserService {
         userRepository.addNewUser(newUser);
         return newUser.getUserId();
     }
-
 }

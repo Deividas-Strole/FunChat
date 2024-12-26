@@ -32,12 +32,10 @@
     </div>
     <script>
         window.onload = function() {
-        const savedName = sessionStorage.getItem("userName");
-        if (savedName === null) {
-        // go to welcome
-        window.location.href = '/welcome';
-        }
-        //console.log("you are in channels. user name from sessionStorage: " + savedName);
+            const savedName = sessionStorage.getItem("userName");
+            if (savedName === null) {
+                window.location.href = '/welcome';
+            }
         }
         const yourName = "[[${name}]]";
         const channel = "[[${channel}]]";
@@ -47,4 +45,3 @@
 </div>
 </body>
 </html>
-
