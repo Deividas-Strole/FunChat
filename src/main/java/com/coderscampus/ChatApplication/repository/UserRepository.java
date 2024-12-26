@@ -19,7 +19,6 @@ public class UserRepository {
         return userMap;
     }
 
-
     public String getUserById(Long userId) {
         return userMap.get(userId);
     }

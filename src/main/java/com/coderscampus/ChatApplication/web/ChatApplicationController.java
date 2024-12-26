@@ -4,7 +4,6 @@ import com.coderscampus.ChatApplication.domain.ChannelRequest;
 import com.coderscampus.ChatApplication.domain.DataRequest;
 import com.coderscampus.ChatApplication.domain.Message;
 import com.coderscampus.ChatApplication.service.ChannelService;
-import com.coderscampus.ChatApplication.service.MessageService;
 import com.coderscampus.ChatApplication.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -19,12 +18,10 @@ import java.util.List;
 @Controller
 public class ChatApplicationController {
 
-    private final MessageService messageService;
     private final UserService userService;
     private final ChannelService channelService;
 
-    public ChatApplicationController(MessageService messageService, UserService userService, ChannelService channelService) {
-        this.messageService = messageService;
+    public ChatApplicationController(UserService userService, ChannelService channelService) {
         this.userService = userService;
         this.channelService = channelService;
     }
@@ -34,17 +31,11 @@ public class ChatApplicationController {
         return "welcome";
     }
 
-
     @PostMapping("/checkDuplicate")
     @ResponseBody
     private ResponseEntity checkForDuplicateNames(@RequestParam("name") String name, @RequestParam("channel") String channel) {
-        System.out.println("name and channel in controller from js: " + name + channel);
-        //boolean isDuplicate = userService.checkForDuplicateName(name, channel);
-        //return ResponseEntity.ok().body();
         boolean result = userService.checkForDuplicateName(name, channel);
-        System.out.println("result in controller: " + result);
         return ResponseEntity.ok(result);
-
     }
 
     @GetMapping("/channels")
@@ -52,10 +43,8 @@ public class ChatApplicationController {
         return "welcome";
     }
 
-
     @PostMapping("/channels")
-    public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, @RequestParam("isNew") Boolean isNew,ModelMap model, HttpSession session) {
-        System.out.println("isNew in /channels: " + isNew);
+    public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, @RequestParam("isNew") Boolean isNew, HttpSession session) {
         Long userId = userService.createUser(name, channel);
         session.setAttribute("name", name);
         return "redirect:/channels/" + channel;
@@ -64,7 +53,6 @@ public class ChatApplicationController {
     @GetMapping("/channels/{channel}")
     public String redirectToChannel(@PathVariable String channel, HttpSession session, ModelMap model) {
         String name = (String) session.getAttribute("name");
-        System.out.println("name in redirect getmapping: " + name);
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
@@ -72,7 +60,7 @@ public class ChatApplicationController {
 
     @PostMapping("/postDataToServer")
     @ResponseBody
-    private ResponseEntity postDataToServer(@RequestBody DataRequest dataRequest, ModelMap model) {
+    private ResponseEntity postDataToServer(@RequestBody DataRequest dataRequest) {
         String channel = dataRequest.getChannel();
         Message message = dataRequest.getMessage();
         channelService.addToChannel(channel, message);
@@ -81,7 +69,7 @@ public class ChatApplicationController {
 
     @PostMapping("/returnAllMessages")
     @ResponseBody
-    private ResponseEntity <List<Message>>returnAllMessages(ModelMap model, @RequestBody ChannelRequest channelRequest) {
+    private ResponseEntity <List<Message>>returnAllMessages(@RequestBody ChannelRequest channelRequest) {
         String channel = channelRequest.getChannel();
         ArrayList<Message> listOfMessages = channelService.getAllMessages(channel);
         return ResponseEntity.ok().body(listOfMessages);
