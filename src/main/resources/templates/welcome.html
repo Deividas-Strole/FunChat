@@ -15,7 +15,7 @@
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
 <div class="content">
-    <h1>WELCOME TO FUN CHAT</h1>
+    <h1 id="header">WELCOME TO FUN CHAT</h1>
     <form action="/channels" method="post" onsubmit="storeNameInSession(); return true;">
         <input type="hidden" id="isNewField" name="isNew" value="true">
         <div id="name-input">
@@ -51,6 +51,7 @@
         const nameTextBox = document.getElementById("nameTextBox");
         const channelSelector = document.getElementById("channel-selector");
         const nameInput = document.getElementById("name-input");
+        const header = document.getElementById("header");
         var isNew = "true";
 
         if (savedName) {
@@ -59,6 +60,7 @@
             nameInput.style.display = "none";
             channelSelector.style.display = "block";
             document.getElementById("isNewField").value = "false";
+            header.textContent ="WELCOME TO FUN CHAT " + savedName;
         }
     };
 
