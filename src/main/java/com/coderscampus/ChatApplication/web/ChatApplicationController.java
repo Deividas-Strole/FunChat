@@ -7,6 +7,7 @@ import com.coderscampus.ChatApplication.service.ChannelService;
 import com.coderscampus.ChatApplication.service.MessageService;
 import com.coderscampus.ChatApplication.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -53,22 +54,26 @@ public class ChatApplicationController {
 
 
     @PostMapping("/channels")
-    public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, @RequestParam("isNew") Boolean isNew,ModelMap model) {
+    public String getChannel(@RequestParam("channel") String channel, @RequestParam("name") String name, @RequestParam("isNew") Boolean isNew,ModelMap model, HttpSession session) {
         System.out.println("isNew in /channels: " + isNew);
 
-
-//        if (isNew == false) {
-//            model.addAttribute("listOfMessages", channelService.getAllMessages(channel));
-//        }
         Long userId = userService.createUser(name, channel);
-//        if (userId == 0L) {
-//            model.addAttribute("name", name);
-//            return "welcome";
-//        }
+        session.setAttribute("name", name);
+//        model.addAttribute("name", name);
+//        model.addAttribute("channel", channel);
+        return "redirect:/channels/" + channel;
+    }
+
+    @GetMapping("/channels/{channel}")
+    public String redirectToChannel(@PathVariable String channel, HttpSession session, ModelMap model) {
+        String name = (String) session.getAttribute("name");
         model.addAttribute("name", name);
         model.addAttribute("channel", channel);
         return "channels";
     }
+
+
+
 
     @PostMapping("/postDataToServer")
     @ResponseBody
