@@ -5,7 +5,6 @@ import com.coderscampus.ChatApplication.domain.DataRequest;
 import com.coderscampus.ChatApplication.domain.Message;
 import com.coderscampus.ChatApplication.service.ChannelService;
 import com.coderscampus.ChatApplication.service.UserService;
-//
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
